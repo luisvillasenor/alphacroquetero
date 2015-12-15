@@ -151,6 +151,52 @@ $('#ModalEditarUser').bootstrapValidator({
 	 }
 });
 
+$('#ModalEditarPresentacion').bootstrapValidator({
+	 message: 'Este valor no es valido',
+	 feedbackIcons: {
+		 valid: 'glyphicon glyphicon-ok',
+		 invalid: 'glyphicon glyphicon-remove',
+		 validating: 'glyphicon glyphicon-refresh'
+	 },
+	 fields: {
+		 sku: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Este dato es requerido'
+				 }
+			 }
+		 },
+		 producto: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Este dato es requerido'
+				 }
+			 }
+		 },
+		 presentacion: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Este dato es requerido'
+				 }
+			 }
+		 },
+		  peso: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Este dato es requerido'
+				 }
+			 }
+		 },
+		  porcion: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Este dato es requerido'
+				 }
+			 }
+		 }
+	 }
+});
+
 
 $('#ModalCPUNuevo').bootstrapValidator({
 	 message: 'Este valor no es valido',

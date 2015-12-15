@@ -5,16 +5,8 @@
 					<p class="texto">Seguridad</p>
 				</li>
 				<li class="contenedor" id="inventario"><!--LI-->
-					<a href="<?php echo base_url('home/bienes_informaticos');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
-					<p class="texto">Bienes Informaticos</p>
-				</li>
-				<li class="contenedor" id="reportes"><!--LI-->
-					<a href="<?php echo base_url('home/reportes');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
-					<p class="texto">Reportes</p>
-				</li>
-				<li class="contenedor" id="empleados"><!--LI-->
-					<a href="<?php echo base_url('home/empleados');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
-					<p class="texto">Empleados</p>
+					<a href="<?php echo base_url('home/gestionCatalogos');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
+					<p class="texto">Gestión de Catálogos</p>
 				</li>
 				<li class="contenedor" id="salir"><!--LI-->
 					<a href="<?php echo base_url('welcome/logout');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>

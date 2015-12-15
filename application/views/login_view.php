@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<title>Inventario de Bienes Informáticos SECTUR Aguascalientes</title>
+	<title>WebApp Gestion de Catalgos Croquetero</title>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/estilo.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
@@ -11,30 +11,18 @@
 
 <body>  <!--Contenedor de la pagina principal-->
 	<div class="container"> <!--Contenido-->
-		<header id="encabezado"> <!--encabezado-->
-			<h3>Sistema de Inventario de Bienes Informáticos de la Secretaría de Turismo 
-				del Estado de Aguascalientes</h3> 
+		<header id=""> <!--encabezado-->
+			<h3></h3> 
 		</header> <!--fin de encabezado-->
 
 		
 			<div id="contenido"> <!--Contenido de Bienvenida--> 
-				<article class="Btexto" id="cont1"><!--Contenedor superior-->
-					<h2>Objetivo</h2>
-					<p>Con este sistema se pretende realizar el registro y control de todos los bienes
-						 informáticos de manera automatizada, estandarizando los registros con el
-						 inventario general de la dependencia </p>
-				</article>
-
-				<article class="Bimagen" id="cont2"><!--Contenedor inferior-->
+				<article class="Bimagen" id=""><!--Contenedor inferior-->
 				</article>
 			</div><!--Fin Contenido de Bienvenida-->
 
 			<div id="lateral"> <!--Contenido lateral "login a la pagina"-->
-				<aside class="Ingresar">
-					<article id="Ilogo">
-						LOGO
-					</article>
-
+				<aside class="Ingresar">					
 					<article id="Iform">
 						<h3>Ingresar</h3>
 						<?php /*Formulario para ingresar usuario y contraseña y permitir el 
@@ -57,14 +45,13 @@
 						</div>
 							<button type="submit" class="btn btn-danger">Acceso</button>
 							<?php echo form_close();?> 
-
 					</article>
 				</aside>
 			</div> <!--Contenido lateral "login a la pagina"-->
 		
 
-		<footer id="pie"><!--Pie de pagina-->
-			<h5>Aguascalientes</h5>
+		<footer id=""><!--Pie de pagina-->
+			
 		</footer><!--Fin Pie de pagina-->
 	</div> <!--fin de contenido-->
 		

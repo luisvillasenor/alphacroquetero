@@ -52,7 +52,7 @@ $db['default']['hostname'] = 'localhost';
 
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'sECTUREd15';
-$db['default']['database'] = 'inventariobi';
+$db['default']['database'] = 'test';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

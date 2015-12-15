@@ -45,11 +45,11 @@ class Empleados extends CI_Controller {
 	}
 
 	/**
-	* Valida el campo del Codigo del Empleado en el formulario de alta
+	* Valida el campo del Codigo del Empleado en el formulario de alta y envia datos via AJAX, ver footer_view function ejecutarAJAX()
 	*/
-	public function validar_codigo_empleado($codigo_empleado = null){
+	public function validar_codigo_empleado($codigo_empleado = 0){
 
-		if ( isset($codigo_empleado)) {
+		if ( isset($codigo_empleado) AND $codigo_empleado > 0 ) {
 
 			$codigos_empleado=$this->tbl_empleado_crud_model->codigos_empleado();
 			$arrayName = array();

@@ -1,5 +1,5 @@
 .DS_Store
-
+.gitignore
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
@@ -11,3 +11,4 @@ application/logs/*
 user_guide/
 application/config/config.php
 application/config/database.php
+application/config/databaseremote.php

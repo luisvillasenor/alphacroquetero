@@ -139,7 +139,7 @@ class Home extends CI_Controller {
 		}
 	}
 
-	public function bienes_informaticos()
+	public function gestionCatalogos()
 	{	
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -151,7 +151,7 @@ class Home extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('contenedor_bi_view');
+			$this->load->view('contenedor_catalogo_adultos_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else

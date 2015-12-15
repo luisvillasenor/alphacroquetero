@@ -90,8 +90,8 @@ body
 #cont2
 {
 	height: 250px;
-	background: url(../img/img1.jpg);
-	background-size: 100% 100%;
+	background: url(../img/logo.png);
+	background-size: 50% 50%;
 	margin: 4% 1% 4% 1%;
 }
 
@@ -116,15 +116,17 @@ body
 /*}*/
 
 /*<---------INICIO ESTILOS PARA EL MENU PRNCIPAL--------->*/
-#menu1 ul
+#menu1
 {
 	margin: 30px auto;
 	width: 1024px;
-	height: 65px;
-	background-color: red;
+	height: 65px;	
 	font-family: verdana;
 	padding: 0;
-	list-style: none;
+}
+#menu1 ul
+{	
+	list-style: none;	
 }
 
 #menu1_1 li.contenedor

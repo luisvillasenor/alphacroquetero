@@ -69,6 +69,154 @@ class Bi_cpu extends CI_Controller {
 
 	}
 
+	/**
+	* Obtiene los registros de Discos Duros del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function dd_cpu($id_cpu){
+
+		$fields = $this->db->list_fields('tbl_dd');		
+
+		$this->load->model('tbl_dd_crud_model');
+		$dds = $this->tbl_dd_crud_model->get_dds($id_cpu);
+		if ( empty($dds) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>DISCOS DUROS</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE DISCOS DUROS ASOCIADOS A ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<div class='panel panel-default'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>DISCOS DUROS</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							foreach ($fields as $field)
+							{
+								echo "<th>";
+							    echo $field;
+							    echo "</th>";
+							}
+							echo "</tr>";
+							echo "<tr>";
+							foreach ($dds as $dd)
+							{
+								echo "<td>";
+							    echo $dd;
+							    echo "</td>";
+							}
+				echo "</tr></table></div></div>";
+			}
+	}	
+
+	/**
+	* Obtiene los registros de Memorias RAM del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function ram_cpu($id_cpu){
+
+		$fields = $this->db->list_fields('tbl_ram');		
+
+		$this->load->model('tbl_ram_crud_model');
+		$dds = $this->tbl_ram_crud_model->get_rams($id_cpu);
+		if ( empty($dds) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>MEMORIAS RAM</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE MEMORIAS RAM EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-default'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>MEMORIAS RAM</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							foreach ($fields as $field)
+							{
+								echo "<th>";
+							    echo $field;
+							    echo "</th>";
+							}
+							echo "</tr>";
+							echo "<tr>";
+							foreach ($dds as $dd)
+							{
+								echo "<td>";
+							    echo $dd;
+							    echo "</td>";
+							}
+				echo "</tr></table></div></div>";
+			}
+	}	
+
+	/**
+	* Obtiene los registros de IPCONFIG del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function ipconfig_cpu($id_cpu){
+
+		$fields = $this->db->list_fields('tbl_eth');		
+
+		$this->load->model('tbl_eth_crud_model');
+		$dds = $this->tbl_eth_crud_model->get_ipconfig($id_cpu);
+		if ( empty($dds) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>CONFIGURACION RED IPv4</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE CONFIGURACION RED IPv4 EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-default'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>CONFIGURACION RED IPv4</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							foreach ($fields as $field)
+							{
+								echo "<th>";
+							    echo $field;
+							    echo "</th>";
+							}
+							echo "</tr>";
+							echo "<tr>";
+							foreach ($dds as $dd)
+							{
+								echo "<td>";
+							    echo $dd;
+							    echo "</td>";
+							}
+				echo "</tr></table></div></div>";
+			}
+	}	
+
+	/**
+	* Obtiene los registros de LICENCIAS del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function licencias_cpu(){
+			
+			echo "<div class='alert alert-danger' role='alert'>SECCION EN DESARROLLO</div>";
+	}	
 
 	public function index()
 	{ 
@@ -545,7 +693,7 @@ class Bi_cpu extends CI_Controller {
 		
 	}
 
-	public function detalles($id_cpu)
+	public function detalles($id_cpu) // Se recibe por la URL el id_del CPU
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -556,7 +704,11 @@ class Bi_cpu extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			//$this->load->model('tbl_dd_crud_model'); // Model para administracion de Discos Duros
+
 			$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
+			
+			//$data['cargar_detalles_dd'] = $this->tbl_dd_crud_model->get_dds($id_cpu);
 			
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');

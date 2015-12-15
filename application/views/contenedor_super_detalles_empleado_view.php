@@ -36,7 +36,9 @@
 				<?php $unidades = array(
 						'SECTURE',
 						'PLAZA DE LAS 3 CENTURIAS',
-						'OFICINA DE ATENCION AL VISITANTE EN PALACIO'
+						'OFICINA DE ATENCION AL VISITANTE EN PALACIO',
+						'OCV',
+						'PARTICULAR'
 				);?>
 			  	<?php foreach ($unidades as $key => $value) {?>
 					<?php if ( $key == $fila->unidad ) {?>
@@ -61,7 +63,8 @@
 						'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
 						'DIR. DE PROMOCION Y FOMENTO',
 						'DIR. PLAZA TRES CENTURIAS',
-						'SECRETARIO'														
+						'OFICINA DEL SECRETARIO',
+						'OFICINA DE CONGRESOS Y VISITANTES'
 				);?>
 
 				<?php foreach ($areas as $key => $value) {?>
