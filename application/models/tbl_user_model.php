@@ -6,64 +6,66 @@ class Tbl_user_model extends CI_Model
 		parent:: __construct();
 	}
 
-	function verify_user($username,$password)
+	function verify_user($credenciales)
 	{
 		//verifica que este registrado un usuario en la base de datos tomando como parametros username 
 		//y password regresando una respuesta V or F
-
-		$this->db->select('*');
-		$this->db->where('username',$username);
-		$this->db->where('password',$password);
+		$res = '';
+		$this->db->where('username',$credenciales['username']);
+		$this->db->where('password',$credenciales['password']);
 		$this->db->limit(1);
 
-		$res=$this->db->get('tbl_user');
+		$res = $this->db->get('tbl_user');
 
-		if ($res->num_rows>0) {
-			return TRUE;
-		}else
-		{
-			return FALSE;
+		if ( $res->num_rows() == 0 ) {
+			return false;
+		} else {
+			return true;
+		}
+		
+	
+	}
+
+	function verify_status ($credenciales)
+	//Se obtiene el status activo o inactivo del usuario que esta ingresando
+	{
+		$res = '';
+		$this->db->where('username',$credenciales['username']);
+		$this->db->where('password',$credenciales['password']);
+		$this->db->where('id_status',1);
+		$this->db->limit(1);
+		$res = $this->db->get('tbl_user');
+		if ( $res->num_rows() == 0 ) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
-	function verify_rol($username,$password)
-
+	function verify_rol($credenciales)
 	//Se obtiene el tipo de rol para identificar el mismo y dar los permisos de 
 	//acceso aL sistema
 	{
-		$this->db->select('id_tipo');
-		$this->db->where('username',$username);
-		$this->db->where('password',$password); 
-
-		$tipo_r = $this->db->get('tbl_user');
-		if ($tipo_r->num_rows>0) 
+		$res = '';
+		$this->db->select('id_tipo');		
+		$this->db->where('username',$credenciales['username']);
+		$this->db->where('password',$credenciales['password']);
+		$this->db->limit(1);
+		$res = $this->db->get('tbl_user');
+		if ($res->num_rows() > 0) 
 		{
-			return $tipo_r->row();
-		}else
+			foreach ( $res->result() as $row ) {
+				$id_tipo = $row->id_tipo;
+			}
+			return $id_tipo;
+		}
+		else
 		{
-			FALSE;
+			return null;
 		}
 	}   //Obtiene el tipo de rol          /////////////DARME DE ALTA EN TRELLO/////////////
 
-	function verify_status ($username, $password)
-	//Se obtiene el status activo o inactivo del usuario que esta ingresando
-	{
-		$this->db->where('username',$username);
-		$this->db->where('password',$password);
-		$this->db->where('id_status',1);
-		$this->db->limit(1);
 
-		$tipo_s = $this->db->get('tbl_user');
-		if ($tipo_s->num_rows>0) {
-
-				return TRUE;
-
-			} else {
-				
-				FALSE;
-			}
-				
-	}
 } 
 
 ?>

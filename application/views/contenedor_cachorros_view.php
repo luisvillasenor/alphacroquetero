@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading text-center"><h1>LISTA DE SKU´s ADULTO</h1></div>
+  <div class="panel-heading text-center"><h1>LISTA DE SKU´s CACHORROS</h1></div>
   <div class="panel-body">
 
 
@@ -22,7 +22,7 @@
 						      </div>
 						      <div class="modal-body">
 
-						         <form id="ModalNuevoSku" class="form" role="form" method="post" action="<?php echo site_url('adultos/crear');?>">
+						         <form id="ModalNuevoSku" class="form" role="form" method="post" action="<?php echo site_url('cachorros/crear');?>">
 						         	<div class="form-group">       
 									  	<label for="sku">SKU</label>       
 										<input type="text" class="form-control" name="sku" id="sku" required>
@@ -34,6 +34,10 @@
 								  <div class="form-group">
 								  		<label for="presentacion">PRESENTACION</label>       
 										<input type="text" class="form-control" name="presentacion" id="presentacion">
+								  </div>
+								  <div class="form-group">
+								  		<label for="edad">EDAD</label>       
+										<input type="text" class="form-control" name="edad" id="edad">
 								  </div>
 								  <div class="form-group"> 
 										<label for="peso">PESO</label>       
@@ -81,15 +85,16 @@
 					</tr>   
 				</thead>    
 				<tbody> 
-				<?php foreach ($cargar_adultos as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+				<?php foreach ($cargar_cachorros as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
 					<tr>
 						<td> <?php echo $fila->sku; ?></td>
 						<td> <?php echo $fila->producto; ?></td>
 						<td>
-							<a href="<?php echo site_url('adultos/detalles');?>/<?php echo $fila->sku; ?>">Ver SKU completo</a>
+							<a href="<?php echo site_url('cachorros/detalles');?>/<?php echo $fila->sku; ?>">Ver SKU completo</a>
 							<br>
 							<a href="" data-toggle="modal" data-target="#miModalDeleteSku<?php echo $fila->sku; ?>">Eliminar Sku</a>
 						</td>
+							
 					</tr>
 
                     <!-- Modal -->
@@ -102,8 +107,7 @@
                                 <h3 class="modal-title">¿Desea eliminar el SKU de forma permanente?</h3>
                               </div>
                               <div class="modal-body">
-                                <form id="ModalEliminarSku" role="form" action="<?php echo site_url('adultos/eliminarsku');?>/<?php echo $fila->sku; ?>" method="post">
-                                  
+                                <form id="ModalEliminarSku" role="form" action="<?php echo site_url('cachorros/eliminarsku');?>/<?php echo $fila->sku; ?>" method="post">
                                   <div class="form-group">    
                                     <label for="sku">SKU: <?php echo $fila->sku; ?></label>       
                                   </div>
@@ -121,7 +125,6 @@
                         </div>
                     </div>
                     <!-- Modal -->
-
 
 				<?php endforeach; ?>
 				</tbody> 

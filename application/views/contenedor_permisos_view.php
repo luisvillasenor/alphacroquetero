@@ -20,7 +20,7 @@
 						      </div>
 						      <div class="modal-body">
 
-						         <form id="loginFormModalPermisosRol" class="form" role="form" method="post" action="<?php echo base_url('permisos/create');?>">
+						         <form id="loginFormModalPermisosRol" class="form" role="form" method="post" action="<?php echo site_url('permisos/create');?>">
 						         	<div class="form-group">       
 									  	<label for="id_tipo" class="control-label">Rol</label> 
 										<select class="form-control" name="id_tipo" id="id_tipo">
@@ -62,7 +62,7 @@
 			    <div>
 			      <ul class="nav navbar-nav">
 			      	<li>
-			        	<form class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('permisos/index');?>">
+			        	<form class="navbar-form navbar-right" role="form" method="post" action="<?php echo site_url('permisos/index');?>">
 						<div class="form-group">       
 						  	<label for="id_tipo">Filtrar por Rol</label> 
 							<select class="form-control" name="id_tipo" id="id_tipo" onchange="this.form.submit()"><!--Cuando detectes un cambio en tus selects traeme los datos de la seleccion-->
@@ -114,10 +114,10 @@
 					  		
 					  		echo "<td class='text-center'>";
 					  		if ($value->permiso != TRUE) { ?>
-					  			<a href="<?php echo base_url('permisos/activar/'.$value->id) ;?>">Activar</a>
+					  			<a href="<?php echo site_url('permisos/activar/'.$value->id) ;?>">Permitir</a>
 					  			
 					  		<?php } else { ?>				  		
-					  			<a href="<?php echo base_url('permisos/desactivar/'.$value->id) ;?>">Desactivar</a>
+					  			<a href="<?php echo site_url('permisos/desactivar/'.$value->id) ;?>">Denegar</a>
 					  			
 					  		<?php }	
 					  		echo "</td>";

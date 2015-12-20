@@ -8,6 +8,7 @@ class Tbl_roles_model extends CI_Model
 
 	public function cargar_roles()
 	{
+		$this->db->where('id_tipo !=',1);
 		$res=$this->db->get('tbl_tipo_rol');////cuando agrego get solo hago referencia al select
 		return $res->result();
 	}

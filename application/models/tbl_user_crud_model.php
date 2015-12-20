@@ -11,6 +11,7 @@ class Tbl_user_crud_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('tbl_user');
+		$this->db->where('tbl_user.id_tipo !=',1);
 		$this->db->join('tbl_tipo_rol', 'tbl_tipo_rol.id_tipo=tbl_user.id_tipo');
 		$res=$this->db->get();
 		return $res->result(); 
@@ -19,7 +20,7 @@ class Tbl_user_crud_model extends CI_Model
 
 	public function cargar_lista()
 	{
-		
+		$this->db->where('id_tipo !=',1);
 		$res=$this->db->get('tbl_user');
 		return $res->result(); 
 

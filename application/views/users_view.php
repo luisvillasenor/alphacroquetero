@@ -22,7 +22,7 @@
 						      </div>
 						      <div class="modal-body">
 
-						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo base_url('users/crear');?>">
+						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo site_url('users/crear');?>">
 						         	<div class="form-group">       
 									  	<label for="nombre">Nombre Completo</label>       
 										<input type="text" class="form-control" name="nombre" id="nombre" required>
@@ -73,7 +73,7 @@
 			    <div>
 			      <ul class="nav navbar-nav">
 			      	<li>
-						<form  class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('users/filtrar_por_rol');?>">
+						<form  class="navbar-form navbar-right" role="form" method="post" action="<?php echo site_url('users/filtrar_por_rol');?>">
 							<div class="form-group">       
 							  	<label for="id_tipo">Filtrar por Rol</label> 
 								<select class="form-control" name="id_tipo" id="id_tipo" onchange="this.form.submit()"><!--Cuando detectes un cambio en tus selects traeme los datos de la seleccion-->
@@ -87,7 +87,7 @@
 						 
 				     	</form>
 			        </li>
-			        <li><form class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('users/filtrar_por_usuario');?>">
+			        <li><form class="navbar-form navbar-right" role="form" method="post" action="<?php echo site_url('users/filtrar_por_usuario');?>">
 							<div class="form-group">       
 							  	<label for="name">Filtrar por Usuario</label>       
 							  	<select class="form-control" name="id_user" id="id_user" onchange="this.form.submit()">
@@ -166,7 +166,7 @@
 								        <h4 class="modal-title">Editar Usuario</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<form id="ModalEditarUser" role="form" action="<?php echo base_url('users/actualizar');?>" method="post">     
+							        	<form id="ModalEditarUser" role="form" action="<?php echo site_url('users/actualizar');?>" method="post">     
 												<div class="form-group">    
 												<label for="id_user">Id</label>       
 												<input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $fila->id_user; ?>" readonly>

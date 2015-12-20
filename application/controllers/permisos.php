@@ -13,7 +13,7 @@ class Permisos extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(site_url('welcome/logout')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
@@ -95,7 +95,7 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->permitir($id);
-					redirect( base_url(COMPONENTE.'/index') );
+					redirect( site_url(COMPONENTE.'/index') );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
 				{
@@ -104,7 +104,7 @@ class Permisos extends CI_Controller {
 					if ($tiene_permiso == TRUE) {
 						// EL USUARIO SI TIENE ACCESO AL METODO
 						$data['get_all'] = $this->permisos_model->permitir($id);
-						redirect( base_url(COMPONENTE.'/index') );
+						redirect( site_url(COMPONENTE.'/index') );
 					}
 					else
 					{
@@ -147,7 +147,7 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->quitar($id);
-					redirect( base_url(COMPONENTE.'/index') );
+					redirect( site_url(COMPONENTE.'/index') );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
 				{
@@ -155,7 +155,7 @@ class Permisos extends CI_Controller {
 					$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
 					if ($tiene_permiso == TRUE) {
 						$data['get_all'] = $this->permisos_model->quitar($id);
-						redirect( base_url(COMPONENTE.'/index') );
+						redirect( site_url(COMPONENTE.'/index') );
 					}
 					else
 					{
@@ -203,7 +203,7 @@ class Permisos extends CI_Controller {
 		    ); 
 		    //Guarda el arreglo de datos en la base de datos
 			$agregar = $this->permisos_model->insert_entry($crearpermiso);
-			redirect(base_url('permisos/index'), 'refresh');
+			redirect(site_url('permisos/index'), 'refresh');
 
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -221,7 +221,7 @@ class Permisos extends CI_Controller {
 			    ); 
 			    //Guarda el arreglo de datos en la base de datos
 				$agregar = $this->permisos_model->insert_entry($crearpermiso);
-				redirect(base_url('permisos/index'), 'refresh');
+				redirect(site_url('permisos/index'), 'refresh');
 			}
 			else
 			{

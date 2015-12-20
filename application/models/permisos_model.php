@@ -76,13 +76,22 @@ public function filtro_roles($tipo_rol){
     $this->db->where('rol',$rol);
     $this->db->where('componente',$componente);
     $this->db->where('recurso',$metodo);
-    $this->db->where('permiso',TRUE);
+    $this->db->where('permiso',1);
     $this->db->limit(1);
-    $q = $this->db->get('tbl_permisos');
-    if ( $q->num_rows > 0 ){
-      return TRUE;
+    $res = $this->db->get('tbl_permisos');
+    if ($res->num_rows() > 0)
+    {
+      foreach ( $res->result() as $row ) {
+        $permiso = $row->permiso;
+      }
+      if ($permiso == 1) {
+        return true;
+      }
+      else
+      {
+        return null;
+      }
     }
-    return FALSE;
   }
   function verify_recursos($rol,$componente){
     $this->db->where('rol',$rol);

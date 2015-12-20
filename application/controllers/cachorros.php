@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Adultos extends CI_Controller {
+class Cachorros extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -34,7 +34,7 @@ class Adultos extends CI_Controller {
 	    define('USER',$this->session->userdata('username'));
 	    //
 	    $this->load->model('permisos_model');
-  		$this->load->model('tbl_adultos_crud_model');
+  		$this->load->model('tbl_cachorros_crud_model');
   		$this->load->model('tbl_roles_model');
   		//$this->load->model('tbl_status_cpu_model');
   		/*
@@ -58,14 +58,14 @@ class Adultos extends CI_Controller {
 			$data['username'] = USER;
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
-			$data['titulo_adultos'] = "LISTA DE SKU´s ADULTOS";
+			$data['titulo_cachorros'] = 'LISTA DE SKU´s CACHORROS';
 
-			$this->load->model('tbl_adultos_crud_model');
-			$data['cargar_adultos'] = $this->tbl_adultos_crud_model->cargar_adultos();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_cachorros_crud_model');
+			$data['cargar_cachorros'] = $this->tbl_cachorros_crud_model->cargar_cachorros();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			
 			$this->load->view('header_view');
 			$this->load->view('menu_view');
-			$this->load->view('contenedor_adultos_view',$data);
+			$this->load->view('contenedor_cachorros_view',$data);
 			$this->load->view('footer_view');
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -82,12 +82,12 @@ class Adultos extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 				$data['titulo'] = 'LISTA DE SKU´s';
 
-				$this->load->model('tbl_adultos_crud_model');
-				$data['cargar_adultos'] = $this->tbl_adultos_crud_model->cargar_adultos();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+				$this->load->model('tbl_cachorros_crud_model');
+				$data['cargar_cachorros'] = $this->tbl_cachorros_crud_model->cargar_cachorros();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 				
 				$this->load->view('header_view');
 				$this->load->view('menu_view');
-				$this->load->view('contenedor_adultos_view',$data);
+				$this->load->view('contenedor_cachorros_view',$data);
 				$this->load->view('footer_view');
 
 				}else{
@@ -121,13 +121,14 @@ class Adultos extends CI_Controller {
 				'sku' => $this->input->post('sku'),
 				'producto' => $this->input->post('producto'),
 				'presentacion' => $this->input->post('presentacion'),
+				'edad' => $this->input->post('edad'),
 				'peso' => $this->input->post('peso'),
 				'porcion' => $this->input->post('porcion')
 			);
 
-			$this->load->model('tbl_adultos_crud_model');
-			$nuevo = $this->tbl_adultos_crud_model->agregar($presentacion);
-			redirect(site_url('adultos/index'));	
+			$this->load->model('tbl_cachorros_crud_model');
+			$nuevo = $this->tbl_cachorros_crud_model->agregar($presentacion);
+			redirect(site_url('cachorros/index'));	
 
 		}
 		// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -147,13 +148,14 @@ class Adultos extends CI_Controller {
 					'sku' => $this->input->post('sku'),
 					'producto' => $this->input->post('producto'),
 					'presentacion' => $this->input->post('presentacion'),
+					'edad' => $this->input->post('edad'),
 					'peso' => $this->input->post('peso'),
 					'porcion' => $this->input->post('porcion')
 				);
 
-				$this->load->model('tbl_adultos_crud_model');
-				$nuevo = $this->tbl_adultos_crud_model->agregar($presentacion);
-				redirect(site_url('adultos/index'));
+				$this->load->model('tbl_cachorros_crud_model');
+				$nuevo = $this->tbl_cachorros_crud_model->agregar($presentacion);
+				redirect(site_url('cachorros/index'));
 
 				}
 				else{
@@ -183,13 +185,14 @@ class Adultos extends CI_Controller {
 				'sku' => $this->input->post('sku'),
 				'producto' => $this->input->post('producto'),
 				'presentacion' => $this->input->post('presentacion'),
+				'edad' => $this->input->post('edad'),
 				'peso' => $this->input->post('peso'),
 				'porcion' => $this->input->post('porcion')
 			);
 
-			$this->load->model('tbl_adultos_crud_model'); 
-			$this->tbl_adultos_crud_model->actualizar($presentacion);
-			redirect(site_url('adultos/index'));
+			$this->load->model('tbl_cachorros_crud_model'); 
+			$this->tbl_cachorros_crud_model->actualizar($presentacion);
+			redirect(site_url('cachorros/index'));
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -209,13 +212,14 @@ class Adultos extends CI_Controller {
 				'sku' => $this->input->post('sku'),
 				'producto' => $this->input->post('producto'),
 				'presentacion' => $this->input->post('presentacion'),
+				'edad' => $this->input->post('edad'),
 				'peso' => $this->input->post('peso'),
 				'porcion' => $this->input->post('porcion')
 				);
 
-				$this->load->model('tbl_adultos_crud_model'); 
-				$this->tbl_adultos_crud_model->actualizar($presentacion);
-				redirect('adultos/index');
+				$this->load->model('tbl_cachorros_crud_model'); 
+				$this->tbl_cachorros_crud_model->actualizar($presentacion);
+				redirect('cachorros/index');
 
 				}
 				else{
@@ -247,14 +251,14 @@ class Adultos extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 			
-			$this->load->model('tbl_adultos_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$this->load->model('tbl_cachorros_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 
-			$data['cargar_detalles'] = $this->tbl_adultos_crud_model->cargar_detalles($sku);
+			$data['cargar_detalles'] = $this->tbl_cachorros_crud_model->cargar_detalles($sku);
 			$data['sku'] = $sku;
 			
 			$this->load->view('header_view');
 			$this->load->view('menu_view');
-			$this->load->view('contenedor_detalles_adulto',$data);
+			$this->load->view('contenedor_detalles_cachorro',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -269,14 +273,14 @@ class Adultos extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 			 		
-				$this->load->model('tbl_adultos_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$this->load->model('tbl_cachorros_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 
-				$data['cargar_detalles'] = $this->tbl_adultos_crud_model->cargar_detalles($sku);
+				$data['cargar_detalles'] = $this->tbl_cachorros_crud_model->cargar_detalles($sku);
 				$data['sku'] = $sku;
 				
 				$this->load->view('header_view');
 				$this->load->view('menu_view');
-				$this->load->view('contenedor_detalles_adulto',$data);
+				$this->load->view('contenedor_detalles_cachorro',$data);
 				$this->load->view('footer_view');
 				}
 				else{
@@ -296,6 +300,9 @@ class Adultos extends CI_Controller {
 	
 	}
 
+
+
+
 	public function eliminar()
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
@@ -310,9 +317,9 @@ class Adultos extends CI_Controller {
 				'id' => $this->input->post('id'),
 			);
 
-			$this->load->model('tbl_adultos_crud_model'); 
-			$this->tbl_adultos_crud_model->eliminar($presentacion);
-			redirect(site_url('adultos/index'));
+			$this->load->model('tbl_cachorros_crud_model'); 
+			$this->tbl_cachorros_crud_model->eliminar($presentacion);
+			redirect(site_url('cachorros/index'));
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -331,9 +338,9 @@ class Adultos extends CI_Controller {
 					'id' => $this->input->post('id'),
 				);
 
-				$this->load->model('tbl_adultos_crud_model'); 
-				$this->tbl_adultos_crud_model->eliminar($presentacion);
-				redirect(site_url('adultos/index'));
+				$this->load->model('tbl_cachorros_crud_model'); 
+				$this->tbl_cachorros_crud_model->eliminar($presentacion);
+				redirect(site_url('cachorros/index'));
 
 				}
 				else{
@@ -348,6 +355,9 @@ class Adultos extends CI_Controller {
 					$this->load->view('menu_view');
 					$this->load->view('sorry_view',$data);
 					$this->load->view('footer_view');
+				
+				
+
 			}
 		}
 	}
@@ -362,9 +372,9 @@ class Adultos extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 
-			$this->load->model('tbl_adultos_crud_model'); 
-			$this->tbl_adultos_crud_model->eliminarsku($sku);
-			redirect(site_url('adultos/index'));
+			$this->load->model('tbl_cachorros_crud_model'); 
+			$this->tbl_cachorros_crud_model->eliminarsku($sku);
+			redirect(site_url('cachorros/index'));
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -379,9 +389,9 @@ class Adultos extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 
-				$this->load->model('tbl_adultos_crud_model'); 
-				$this->tbl_adultos_crud_model->eliminarsku($sku);
-				redirect(site_url('adultos/index'));
+				$this->load->model('tbl_cachorros_crud_model'); 
+				$this->tbl_cachorros_crud_model->eliminarsku($sku);
+				redirect(site_url('cachorros/index'));
 
 				}
 				else{

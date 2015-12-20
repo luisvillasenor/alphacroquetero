@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = 'internal-db.s202570.gridserver.com';
 
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'sECTUREd1';
+$db['default']['username'] = 'db202570';
+$db['default']['password'] = '3bbcQt2WtV?';
 $db['default']['database'] = 'db202570_devcroquetero';
 
 $db['default']['dbdriver'] = 'mysql';

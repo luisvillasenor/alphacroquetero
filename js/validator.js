@@ -17,6 +17,31 @@
  */
 $(document).ready(function() {
 
+$('#LoginForm').bootstrapValidator({
+	 message: 'Este valor no es valido',
+	 feedbackIcons: {
+		 valid: 'glyphicon glyphicon-ok',
+		 invalid: 'glyphicon glyphicon-remove',
+		 validating: 'glyphicon glyphicon-refresh'
+	 },
+	 fields: {
+		 username: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Campo requerido'
+				 }
+			 }
+		 },
+		 password: {
+			 validators: {
+				 notEmpty: {
+					 message: 'Campo requerido'
+				 }
+			 }
+		 }
+	 }
+});
+
 
 $('#loginFormModalPermisosRol').bootstrapValidator({
 	 message: 'Este valor no es valido',
@@ -29,28 +54,28 @@ $('#loginFormModalPermisosRol').bootstrapValidator({
 		 componente: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El nombre de componente es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 recurso: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El nombre de recurso es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 permiso: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El permiso es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 id_tipo: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El id_tipo es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 }
@@ -70,35 +95,35 @@ $('#ModalNuevoUser').bootstrapValidator({
 		 nombre: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El nombre es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 username: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El username es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 password: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El password es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		  email: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El e-mail es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		  tel: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El telefono es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 }
@@ -116,42 +141,42 @@ $('#ModalEditarUser').bootstrapValidator({
 		 nombre: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El nombre es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 username: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El username es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 password: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El password es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		  email: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El e-mail es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		  tel: {
 			 validators: {
 				 notEmpty: {
-					 message: 'El telefono es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 }
 	 }
 });
 
-$('#ModalEditarPresentacion').bootstrapValidator({
+$('#ModalNuevoSku').bootstrapValidator({
 	 message: 'Este valor no es valido',
 	 feedbackIcons: {
 		 valid: 'glyphicon glyphicon-ok',
@@ -162,35 +187,35 @@ $('#ModalEditarPresentacion').bootstrapValidator({
 		 sku: {
 			 validators: {
 				 notEmpty: {
-					 message: 'Este dato es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 producto: {
 			 validators: {
 				 notEmpty: {
-					 message: 'Este dato es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		 presentacion: {
 			 validators: {
 				 notEmpty: {
-					 message: 'Este dato es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		  peso: {
 			 validators: {
 				 notEmpty: {
-					 message: 'Este dato es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 },
 		  porcion: {
 			 validators: {
 				 notEmpty: {
-					 message: 'Este dato es requerido'
+					 message: 'Campo requerido'
 				 }
 			 }
 		 }
@@ -198,334 +223,6 @@ $('#ModalEditarPresentacion').bootstrapValidator({
 });
 
 
-$('#ModalCPUNuevo').bootstrapValidator({
-	 message: 'Este valor no es valido',
-	 feedbackIcons: {
-		 valid: 'glyphicon glyphicon-ok',
-		 invalid: 'glyphicon glyphicon-remove',
-		 validating: 'glyphicon glyphicon-refresh'
-	 },
-	 fields: {
-		 num_inventario: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El numero de inventario es requerido'
-				 }
-			 }
-		 },
-		 categoria: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La categoria es requerida'
-				 }
-			 }
-		 },
-		 marca: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La marca es requerida'
-				 }
-			 }
-		 },
-		 modelo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El modelo es requerido'
-				 }
-			 }
-		 },
-		  hostname: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El hostname es requerido'
-				 }
-			 }
-		 },
-		  num_serie: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El numero de serie es requerido'
-				 }
-			 }
-		 },
-		  tipo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El tipo es requerido'
-				 }
-			 }
-		 },
-		 ubicacion: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La ubicacion es requerida'
-				 }
-			 }
-		 }
-	 }
-});
-
-
-
-$('#ModalCPUEditar').bootstrapValidator({
-	 message: 'Este valor no es valido',
-	 feedbackIcons: {
-		 valid: 'glyphicon glyphicon-ok',
-		 invalid: 'glyphicon glyphicon-remove',
-		 validating: 'glyphicon glyphicon-refresh'
-	 },
-	 fields: {
-		 num_inventario: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El numero de inventario es requerido'
-				 }
-			 }
-		 },
-		 categoria: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La categoria es requerida'
-				 }
-			 }
-		 },
-		 marca: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La marca es requerida'
-				 }
-			 }
-		 },
-		 modelo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El modelo es requerido'
-				 }
-			 }
-		 },
-		  hostname: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El host name es requerido'
-				 }
-			 }
-		 },
-		  num_serie: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El numero de serie es requerido'
-				 }
-			 }
-		 },
-		  tipo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El tipo es requerido'
-				 }
-			 }
-		 },
-		 ubicacion: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La ubicacion es requerida'
-				 }
-			 }
-		 }
-	 }
-});
-
-
-$('#ModalCPUReasignar').bootstrapValidator({
-	 message: 'Este valor no es valido',
-	 feedbackIcons: {
-		 valid: 'glyphicon glyphicon-ok',
-		 invalid: 'glyphicon glyphicon-remove',
-		 validating: 'glyphicon glyphicon-refresh'
-	 },
-	 fields: {
-		 ubicacion: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La ubicacion es requerida'
-				 }
-			 }
-		 }
-	 }
-});
-
-
-$('#ModalEmpleadoNuevo').bootstrapValidator({
-	 message: 'Este valor no es valido',
-	 feedbackIcons: {
-		 valid: 'glyphicon glyphicon-ok',
-		 invalid: 'glyphicon glyphicon-remove',
-		 validating: 'glyphicon glyphicon-refresh'
-	 },
-	 fields: {
-		 codigo_empleado: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El codigo de empleado no existente es requerido'
-				 }
-			 }
-		 },
-		 nombre_completo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El nombre completo es requerida'
-				 }
-			 }
-		 },
-		 unidad: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La unidad es requerida'
-				 }
-			 }
-		 },
-		 usuario_de_red: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El usuario de red es requerido'
-				 }
-			 }
-		 },
-		  contrasena: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La contraseña es requerido'
-				 }
-			 }
-		 },
-		  num_extension: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El numero de extension es requerido'
-				 }
-			 }
-		 },
-		  correo_electonico: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El correo electronico es requerido'
-				 }
-			 }
-		 },
-		 area: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El area es requerida'
-				 }
-			 }
-		 },
-		 cargo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El cargo es requerido'
-				 }
-			 }
-		 }
-	 }
-});
-
-$('#ModalEmpleadoEditar').bootstrapValidator({
-	 message: 'Este valor no es valido',
-	 feedbackIcons: {
-		 valid: 'glyphicon glyphicon-ok',
-		 invalid: 'glyphicon glyphicon-remove',
-		 validating: 'glyphicon glyphicon-refresh'
-	 },
-	 fields: {
-		 codigo_empleado: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El codigo de empleado no existente es requerido'
-				 }
-			 }
-		 },
-		 nombre_completo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El nombre completo es requerida'
-				 }
-			 }
-		 },
-		 unidad: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La unidad es requerida'
-				 }
-			 }
-		 },
-		 usuario_de_red: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El usuario de red es requerido'
-				 }
-			 }
-		 },
-		  contrasena: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La contraseña es requerido'
-				 }
-			 }
-		 },
-		  num_extension: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El numero de extension es requerido'
-				 }
-			 }
-		 },
-		  correo_electonico: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El correo electronico es requerido'
-				 }
-			 }
-		 },
-		 area: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El area es requerida'
-				 }
-			 }
-		 },
-		 cargo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El cargo es requerido'
-				 }
-			 }
-		 }
-	 }
-});
-
-$('#NuevoPermisosCarpeta').bootstrapValidator({
-	 message: 'Este valor no es valido',
-	 feedbackIcons: {
-		 valid: 'glyphicon glyphicon-ok',
-		 invalid: 'glyphicon glyphicon-remove',
-		 validating: 'glyphicon glyphicon-refresh'
-	 },
-	 fields: {
-		 capacidad_correo: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La capacidad es requerida'
-				 }
-			 }
-		 },
-		 otros_servicios: {
-			 validators: {
-				 notEmpty: {
-					 message: 'La informacion es requerida'
-				 }
-			 }
-		 }
-	 }
-});
 
 
 });

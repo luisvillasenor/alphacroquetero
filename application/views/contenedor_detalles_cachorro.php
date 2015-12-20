@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
-	<li><a href="<?php echo site_url('adultos/index');?>">SKU'S ADULTOS</a></li>
-	<li><a href="<?php echo site_url('adultos/detalles');?>/<?php echo $sku; ?>"><?php echo $sku; ?></a></li>
+	<li><a href="<?php echo site_url('cachorros/index');?>">SKU'S CACHORROS</a></li>
+	<li><a href="<?php echo site_url('cachorros/detalles');?>/<?php echo $sku; ?>"><?php echo $sku; ?></a></li>
 </ol>
 <div class="panel panel-primary">
   	<div class="panel-heading text-center">
@@ -27,6 +27,7 @@
              <th>SKU</th>         
              <th>Producto</th>
              <th>Presentación</th>
+             <th>Edad</th>
              <th>Peso</th>
              <th>Porción</th>
              <th>Operaciones</th> 
@@ -38,6 +39,7 @@
               <td> <?php echo $fila->sku; ?></td>
               <td> <?php  echo $fila->producto; ?></td>
               <td> <?php  echo $fila->presentacion; ?></td>
+              <td> <?php  echo $fila->edad; ?></td>
               <td> <?php  echo $fila->peso; ?></td>
               <td> <?php  echo $fila->porcion; ?></td>
               <td>
@@ -65,7 +67,7 @@
                                 <h4 class="modal-title">Editar Presentación</h4>
                               </div>
                               <div class="modal-body">
-                                <form id="ModalEditarSku" class="form" role="form" method="post" action="<?php echo site_url('adultos/actualizar');?>">
+                                <form id="ModalEditarSku" class="form" role="form" method="post" action="<?php echo site_url('cachorros/actualizar');?>">
                                   <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $fila->id; ?>">
                                   <div class="form-group">    
                                     <label for="sku">SKU: <?php echo $fila->sku; ?></label>       
@@ -78,6 +80,10 @@
                                   <div class="form-group">    
                                     <label for="presentacion">PRESENTACION: <?php echo $fila->presentacion; ?></label>       
                                     <input type="text" class="form-control" id="presentacion" name="presentacion" value="<?php echo $fila->presentacion; ?>">
+                                  </div>
+                                  <div class="form-group">    
+                                    <label for="edad">EDAD: <?php echo $fila->edad; ?></label>       
+                                    <input type="text" class="form-control" id="edad" name="edad" value="<?php echo $fila->edad; ?>">
                                   </div>
                                   <div class="form-group">    
                                     <label for="peso">PESO: <?php echo $fila->peso; ?></label>       
@@ -109,7 +115,7 @@
                                 <h3 class="modal-title">¿Desea eliminar el registro de forma permanente?</h3>
                               </div>
                               <div class="modal-body">
-                                <form id="ModalEliminarPresentacion" role="form" action="<?php echo site_url('adultos/eliminar');?>" method="post">
+                                <form id="ModalEliminarPresentacion" role="form" action="<?php echo site_url('cachorros/eliminar');?>" method="post">
                                   <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $fila->id; ?>">
                                   <div class="form-group">    
                                     <label for="sku">SKU: <?php echo $fila->sku; ?></label>       
@@ -119,6 +125,9 @@
                                   </div>
                                   <div class="form-group">    
                                     <label for="presentacion">PRESENTACION: <?php echo $fila->presentacion; ?></label>       
+                                  </div>
+                                  <div class="form-group">    
+                                    <label for="edad">EDAD: <?php echo $fila->edad; ?></label>       
                                   </div>
                                   <div class="form-group">    
                                     <label for="peso">PESO: <?php echo $fila->peso; ?></label>       

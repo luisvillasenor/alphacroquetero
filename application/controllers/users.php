@@ -25,7 +25,7 @@ class Users extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(site_url('welcome/logout')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
@@ -153,14 +153,7 @@ class Users extends CI_Controller {
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
-		 		$nombre=$_POST['nombre'];
-				$id_tipo=$_POST['id_tipo'];
-				$username=$_POST['username'];
-				$password=$_POST['password'];
-				$email=$_POST['email'];
-				$tel=$_POST['tel'];
-				$id_status=$_POST['id_status'];
-
+		 		
 				$this->load->model('tbl_user_crud_model'); 
 				$this->load->view('sorry_view',$data);
 			}
@@ -259,16 +252,6 @@ class Users extends CI_Controller {
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
-				$id_user=$_POST['id_user'];
-				$nombre=$_POST['nombre'];
-				$id_tipo=$_POST['id_tipo'];
-				$username=$_POST['username'];
-				$password=$_POST['password'];
-				$email=$_POST['email'];
-				$tel=$_POST['tel'];
-				$id_status=$_POST['id_status'];
-
-				$this->load->model('tbl_user_crud_model'); 
 				$this->load->view('sorry_view',$data);
 			}
 		}		

@@ -3,62 +3,66 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<title>WebApp Gestion de Catalgos Croquetero</title>
+	<title>WebApp Gestion de Catalogos Croquetero</title>
+	<meta name="description" content="WebApp Gestion de Catalogos Croquetero">
+	<meta name="author" content="http://www.iceberg9.com">
+	<link rel="icon" href="<?php echo base_url(); ?>favicon.ico" type="image/gif">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/estilo.css">
+	<style type="text/css">
+		body {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #f5f5f5;
+		}
+
+		.form-signin {
+			max-width: 300px;
+			padding: 19px 29px 29px;
+			margin: 0 auto 20px;
+			background-color: #fff;
+			border: 1px solid #e5e5e5;
+			-webkit-border-radius: 5px;
+			   -moz-border-radius: 5px;
+			        border-radius: 5px;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+			   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+			        box-shadow: 0 1px 2px rgba(0,0,0,.05);
+		}
+		.form-signin .form-signin-heading,
+		.form-signin .checkbox {
+			margin-bottom: 10px;
+		}
+		.form-signin input[type="text"],
+		.form-signin input[type="password"] {
+			font-size: 16px;
+			height: auto;
+			margin-bottom: 15px;
+			padding: 7px 9px
+		}
+
+	</style>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
 </head>
 
 <body>  <!--Contenedor de la pagina principal-->
 	<div class="container"> <!--Contenido-->
-		<header id=""> <!--encabezado-->
-			<h3></h3> 
-		</header> <!--fin de encabezado-->
 
-		
-			<div id="contenido"> <!--Contenido de Bienvenida--> 
-				<article class="Bimagen" id=""><!--Contenedor inferior-->
-				</article>
-			</div><!--Fin Contenido de Bienvenida-->
+		<form class="form-signin" id="" name="" method="post" action="<?php echo site_url('welcome/index'); ?>">
+			<h2 class="form-signin-heading">Iniciar Sesión</h2>
+			<input type="text" id="username" name="username" class="input-block-level" placeholder="Usuario">
+			<input type="password" id="password" name="password" class="input-block-level" placeholder="Password">
+			<button type="submit" class="btn btn-large btn-primary">Acceso</button>
+		</form>
 
-			<div id="lateral"> <!--Contenido lateral "login a la pagina"-->
-				<aside class="Ingresar">					
-					<article id="Iform">
-						<h3>Ingresar</h3>
-						<?php /*Formulario para ingresar usuario y contraseña y permitir el 
-								acceso al sistema en aso de que se cumpla con una validacion*/
-							$attributes = array('class' => '', 'textalign' => 'center');
-							echo form_open(base_url('welcome/index'),$attributes); /*se va al controller
-												welcome para validar el usuario y la contraseña insertados*/
-						?>
-						<div class="form-group col-sm-12">
-						<?php
-							echo form_input('username', set_value('username'), 
-								'id="username" class="form-control" placeholder="Usuario"');
-						?>
-						</div>
-						<div class="form-group col-sm-12">
-							<?php
-								echo form_password('password', '', 'id="password" class="form-control"
-								 placeholder="Contraseña"');
-							?>
-						</div>
-							<button type="submit" class="btn btn-danger">Acceso</button>
-							<?php echo form_close();?> 
-					</article>
-				</aside>
-			</div> <!--Contenido lateral "login a la pagina"-->
-		
 
-		<footer id=""><!--Pie de pagina-->
-			
-		</footer><!--Fin Pie de pagina-->
 	</div> <!--fin de contenido-->
 		
 
 	<script src="<?php echo base_url(); ?>js/jquery.js"></script>
 	<script src="<?php echo base_url(); ?>bootstrap.js"></script>
 	<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/bootstrapValidator.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/validator.js"></script>
 
 </body> <!--Fin de contenedor de la pagina principal-->
 </html>
