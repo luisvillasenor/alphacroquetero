@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 
-$db['default']['username'] = 'fundcroq_master';
-$db['default']['password'] = 'wiC%Phou^';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'lgva6773';
 $db['default']['database'] = 'fundcroq_catalogos';
 
 $db['default']['dbdriver'] = 'mysql';

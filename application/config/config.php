@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://fundacioncroquetero.org/alphacroquetero/';
+$config['base_url']	= 'http://alphacroquetero.localhost/alphacroquetero';
 
 /*
 |--------------------------------------------------------------------------

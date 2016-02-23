@@ -20,6 +20,7 @@ class Home extends CI_Controller {
 	    //
   		$this->load->model('permisos_model');
  		$this->load->model('tbl_roles_model');
+  		$this->load->model('tbl_recordatorios_crud_model');
   		/*
   		* Tabla de Roles:
   		* 1.- Super Administrador
