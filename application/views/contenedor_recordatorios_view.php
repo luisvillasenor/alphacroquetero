@@ -19,7 +19,7 @@
 			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/show');?>/0">Ver "Programados"</a>
 			        </li>
 			        <li>
-			        	<a class="btn btn-md" href="<?php echo base_url();?>">Exportar a "csv"</a>
+			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/exportar');?>">Exportar a "csv"</a>
 			        </li>
 			      </ul>
 			    </div>
