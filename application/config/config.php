@@ -15,7 +15,7 @@
 |
 */
 $config['base_url']	= 'http://alphacroquetero.localhost/alphacroquetero';
-
+#$config['base_url']	= 'http://dev02.iceberg9.com/alphacroquetero';
 /*
 |--------------------------------------------------------------------------
 | Index File
