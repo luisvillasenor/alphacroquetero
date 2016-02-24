@@ -1,27 +1,27 @@
-<?php #if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Recordatorios extends CI_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
-		#$this->load->library('session');
-		#$this->load->library('encrypt');
-		$this->load->library('email');
+		$this->load->library('session');
+		$this->load->library('encrypt');
+		#$this->load->library('email');
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
-		#$ci_session= $this->session->userdata('username');
-		#if (empty($ci_session)===TRUE) {
-		#	redirect(site_url('welcome/logout')); 
-		#}
+		$ci_session= $this->session->userdata('username');
+		if (empty($ci_session)===TRUE) {
+			redirect(site_url('welcome/logout')); 
+		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
-		define('ROL', 1); #$this->session->userdata('rol'));
+		define('ROL', $this->session->userdata('rol'));
 	    define('COMPONENTE',$this->uri->segment(1));
-	    #define('USER',$this->session->userdata('username'));
+	    define('USER',$this->session->userdata('username'));
 	    //
-	    #$this->load->model('permisos_model');
+	    $this->load->model('permisos_model');
   		$this->load->model('tbl_recordatorios_crud_model');
-  		#$this->load->model('tbl_roles_model');
+  		$this->load->model('tbl_roles_model');
 
   		/*
   		* Tabla de Roles:
@@ -31,7 +31,7 @@ class Recordatorios extends CI_Controller {
   		*/
 	}
 
-	public function show()
+	public function show($status_recordatorio = null)
 	{	
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -41,7 +41,7 @@ class Recordatorios extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->model('tbl_recordatorios_crud_model');
-			$data['show_recordatorios'] = $this->tbl_recordatorios_crud_model->show();
+			$data['show_recordatorios'] = $this->tbl_recordatorios_crud_model->show($status_recordatorio);
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
@@ -59,7 +59,7 @@ class Recordatorios extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		$this->load->model('tbl_recordatorios_crud_model');
-				$data['show_recordatorios'] = $this->tbl_recordatorios_crud_model->show();
+				$data['show_recordatorios'] = $this->tbl_recordatorios_crud_model->show($status_recordatorio);
 				$this->load->view('header_view');
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_recordatorios_view',$data);	
@@ -80,15 +80,17 @@ class Recordatorios extends CI_Controller {
 		
 	}
 
+/*
+
 	public function actualizar_status($id = null)
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-			#$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
-			#$data['username'] = USER;
-			#$data['rol'] = ROL;
-			#$data['get_all'] = $this->permisos_model->get_all();
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
 			
 			$this->load->model('tbl_recordatorios_crud_model'); 
 			$actualizar_status = $this->tbl_recordatorios_crud_model->actualizar_status($id);
@@ -118,16 +120,16 @@ class Recordatorios extends CI_Controller {
 				}
 					else{
 
-						#$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
-						#$data['username'] = USER;
-						#$data['rol'] = ROL;
-				 		#$data['get_all'] = $this->permisos_model->get_all();
+						$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+						$data['username'] = USER;
+						$data['rol'] = ROL;
+				 		$data['get_all'] = $this->permisos_model->get_all();
 
-						#$this->load->view('header_view');
+						$this->load->view('header_view');
 						//$this->load->view('cabecera_view');
-						#$this->load->view('menu_view');
-						#$this->load->view('sorry_view',$data);
-						#$this->load->view('footer_view');
+						$this->load->view('menu_view');
+						$this->load->view('sorry_view',$data);
+						$this->load->view('footer_view');
 					}
 			}
 	}
@@ -137,10 +139,10 @@ class Recordatorios extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 
-			#$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
-			#$data['username'] = USER;
-			#$data['rol'] = ROL;
-			#$data['get_all'] = $this->permisos_model->get_all();
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->model('tbl_recordatorios_crud_model');
 			$data_recordatorios = $this->tbl_recordatorios_crud_model->show($status_recordatorio);
 			if ( isset($data_recordatorios) && !empty($data_recordatorios) ) {
@@ -155,11 +157,11 @@ class Recordatorios extends CI_Controller {
 				}
 			}
 			
-			#$this->load->view('header_view');
+			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			#$this->load->view('menu_view');
-			#$this->load->view('contenedor_recordatorios_view',$data);
-			#$this->load->view('footer_view');
+			$this->load->view('menu_view');
+			$this->load->view('contenedor_recordatorios_view',$data);
+			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
@@ -179,25 +181,26 @@ class Recordatorios extends CI_Controller {
 					echo "Correo enviado a: ".$recordatorio->email_recordatorio;
 					echo "<br>";
 				}
-				#$this->load->view('header_view');
-				#$this->load->view('menu_view');
-				#$this->load->view('contenedor_recordatorios_view',$data);	
-				#$this->load->view('footer_view');
+				$this->load->view('header_view');
+				$this->load->view('menu_view');
+				$this->load->view('contenedor_recordatorios_view',$data);	
+				$this->load->view('footer_view');
 			}else{
 
-				#$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
-				#$data['username'] = USER;
-				#$data['rol'] = ROL;
-				#$data['get_all'] = $this->permisos_model->get_all();
-				#$this->load->view('header_view');
-				#$this->load->view('menu_view');
-				#$this->load->view('sorry_view',$data);
-				#$this->load->view('footer_view');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$this->load->view('header_view');
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
 			}				
 			
 		}
 		
 	}
+
 
 	public function recordatorio($email = null)
 	{	
@@ -265,7 +268,7 @@ class Recordatorios extends CI_Controller {
 		
 	}
 
-
+*/
 
 
 

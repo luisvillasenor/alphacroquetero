@@ -10,14 +10,19 @@ class Tbl_recordatorios_crud_model extends CI_Model
 	{
 		if ( isset($status_recordatorio) ) {
 
+			$this->db->order_by('status_recordatorio','ASC');
+			$this->db->order_by('fecha_envio','DESC');
 			$this->db->where('status_recordatorio',$status_recordatorio);
 			$res = $this->db->get('recordatorios');
 			return $res->result(); 
 		}
+		$this->db->order_by('status_recordatorio','ASC');
+		$this->db->order_by('fecha_envio','DESC');
 		$res = $this->db->get('recordatorios');
 		return $res->result(); 
 	}
 
+/*
 	public function actualizar_status($id = null)
 	{
 		if ( isset($id) ) {
@@ -32,8 +37,7 @@ class Tbl_recordatorios_crud_model extends CI_Model
 		}
 		return null;		
 	}
-
-
+*/
 
 } 
 ?>

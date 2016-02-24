@@ -16,10 +16,10 @@
 			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/show');?>/1">Ver "Enviados"</a>
 			        </li>
 			        <li>
-			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/show');?>/0">Ver "No Enviados"</a>
+			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/show');?>/0">Ver "Programados"</a>
 			        </li>
 			        <li>
-			        	<a class="btn btn-md" href="<?php echo base_url();?>"><span class="label" >Exportar a "csv"</span></a>
+			        	<a class="btn btn-md" href="<?php echo base_url();?>">Exportar a "csv"</a>
 			        </li>
 			      </ul>
 			    </div>
@@ -41,9 +41,17 @@
 					<tr>
 						<td></td>
 						<td><?php echo $fila->email_recordatorio; ?></td>
-						<td></td>
-						<td><?php echo $fila->fecha_recordatorio; ?></td>
-						<td><?php echo $fila->status_recordatorio; ?></td>
+						<td><?php echo $fila->producto; ?></td>
+						<td><?php echo $fila->fecha_envio; ?></td>
+						<td>
+							<?php
+								if ( $fila->status_recordatorio == 0 ) { ?>
+									<span class="label label-warning">Programado</span>
+								<?php } elseif ( $fila->status_recordatorio == 1 ) { ?>
+									<span class="label label-success">Enviado</span>
+								<?php } ?>							
+							
+						</td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody> 

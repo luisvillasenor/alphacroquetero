@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	if ( isset($action) ) {
 
 		#$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
-		#$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
-		$host = "internal-db.s202570.gridserver.com"; $user = "db202570";	$pass = "3bbcQt2WtV?"; $db = "db202570_devcroquetero";
+		$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
+		#$host = "internal-db.s202570.gridserver.com"; $user = "db202570";	$pass = "3bbcQt2WtV?"; $db = "db202570_devcroquetero";
 
 		switch ($action) {
 			case 'registrar':
