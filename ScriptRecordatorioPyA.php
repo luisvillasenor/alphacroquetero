@@ -4,19 +4,25 @@ header ("Content-Type: application/json; charset=UTF-8");
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 	$action = null;
+	$email = null;
+	$fecha_recordatorio = null;
+
 	$action = $_GET['accion'];
+	$email = $_GET['email'];
+	$fecha = $_GET['fecha'];
 
 	if ( isset($action) ) {
 
+		#$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
+		#$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
+		$host = "internal-db.s202570.gridserver.com"; $user = "db202570";	$pass = "3bbcQt2WtV?"; $db = "db202570_devcroquetero";
+
 		switch ($action) {
 			case 'registrar':
-				
-					#$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
-					$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
-					$email_recordatorio = "luis@iceberg9.com";
-					$fecha_recordatorio = "2016-02-25";
-					$producto = "Software 2016";
-
+					
+					$email_recordatorio = $email;
+					$fecha_recordatorio = $fecha;
+					$producto = "Producto X 2016";
 
 					#$email_recordatorio = $_GET['email'];
 					#$fecha_recordatorio = $_GET['fecha'];
@@ -60,34 +66,34 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 			case 'recordatorio':
 				
-					#$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
-					$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
 					$status_recordatorio = 0;
 					$fecha_envio = date('Y-m-d H:i:s');
+					$hoy = date('Y-m-d');
 					try{
 							$dbh = new PDO("mysql:host=".$host.";dbname=".$db,$user,$pass);
 							$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-							$sth = $dbh->prepare('SELECT * FROM recordatorios WHERE status_recordatorio=?');
-							$sth->execute(array($status_recordatorio));
+							$sth = $dbh->prepare('SELECT * FROM recordatorios WHERE status_recordatorio=? AND fecha_recordatorio=?');
+							$sth->execute(array($status_recordatorio,$hoy));
 							$data_recordatorios = $sth->fetchAll(PDO::FETCH_ASSOC);
 							if ( isset($data_recordatorios) && !empty($data_recordatorios) ) {
 								foreach ($data_recordatorios as $recordatorio) {
 									$id = $recordatorio['id'];
 									$destinatario = $recordatorio['email_recordatorio'];
-								    echo $destinatario."\n";
+								    $asunto = "Recordatorio";
+								    $mensaje = "Ya es tiempo de comprar mas";
+								    mail($destinatario,$asunto,$mensaje);
 								    
-								    #$asunto = "Recordatorio";
-								    #$mensaje = "Ya es tiempo de comprar mas";
-								    #mail($destinatario,$asunto,$mensaje);
 								    $sth = $dbh->prepare('UPDATE recordatorios SET status_recordatorio=1, fecha_envio=date("Y-m-d H:i:s") WHERE id=?');
 									$sth->execute(array($id));
-									#$this->recordatorio($recordatorio->email_recordatorio);
-									#$actualizar_status = $this->actualizar_status($recordatorio->id);
-									#var_dump($actualizar_status); die();
+									
+									echo "ID: ".$id." -- Destinatario: ".$destinatario." Fecha enviado: ".$fecha_envio."\n";
 								}
+								#echo "Recordatorios Enviados";
+								exit();
 							}
-							echo "Recordatorios Enviados";
+							echo "No hay Recordatorios para hoy";
+							exit();
 							#return true;
 					}
 					catch(PDOException $e) {
