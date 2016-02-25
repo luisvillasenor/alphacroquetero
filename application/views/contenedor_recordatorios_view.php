@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading text-center"><h1>LISTA DE RECORDATORIOS</h1></div>
+  <div class="panel-heading text-center"><h1>LISTA DE RECORDATORIOS [PRUEBAS]</h1></div>
   <div class="panel-body">
   		<div class="caption">
 	      	<nav class="navbar navbar-default">
@@ -32,6 +32,7 @@
 						<th>Usuario</th> 
 						<th>Mail</th> 
 						<th>Producto</th> 
+						<th>Fecha Programada</th>
 						<th>Fecha de envío</th>
 						<th>Estatus</th> 
 					</tr>   
@@ -42,6 +43,7 @@
 						<td></td>
 						<td><?php echo $fila->email_recordatorio; ?></td>
 						<td><?php echo $fila->producto; ?></td>
+						<td><?php echo $fila->fecha_recordatorio; ?></td>
 						<td><?php echo $fila->fecha_envio; ?></td>
 						<td>
 							<?php

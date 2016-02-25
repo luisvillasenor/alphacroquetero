@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 	if ( isset($action) ) {
 
-		#$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
-		$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
+		$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
+		#$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
 		#$host = "internal-db.s202570.gridserver.com"; $user = "db202570";	$pass = "3bbcQt2WtV?"; $db = "db202570_devcroquetero";
 
 		switch ($action) {
@@ -23,11 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 					$email_recordatorio = $email;
 					$fecha_recordatorio = $fecha;
 					$producto = "Producto X 2016";
-
-					#$email_recordatorio = $_GET['email'];
-					#$fecha_recordatorio = $_GET['fecha'];
-					#$producto = $_GET['producto'];
-					
+			
 					if ( isset($email_recordatorio) && $email_recordatorio != null ) {
 						
 						if ( isset($fecha_recordatorio) && $fecha_recordatorio != null ) {
