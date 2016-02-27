@@ -65,7 +65,7 @@
 						<td><?php echo $fila->price_pya; ?></td>
 						<td><?php echo $fila->donation; ?></td>
 						<td><?php echo $fila->save_money; ?></td>
-						<td><?php echo $fila->boolean; ?></td>
+						<td><?php echo $fila->booleano; ?></td>
 						<td><?php echo $fila->id_variant; ?></td>
 						<td>
 							<?php
