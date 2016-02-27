@@ -22,6 +22,18 @@ class Tbl_recordatorios_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
+	public function delete($id = null)
+	{
+		if ( isset($id) ) {
+			
+			$this->db->where('id',$id);
+			$this->db->delete('recordatorios');
+			return TRUE;		
+		}
+		return null;		
+	}
+
+
 /*
 	public function actualizar_status($id = null)
 	{

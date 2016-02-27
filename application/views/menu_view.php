@@ -35,12 +35,12 @@
 					<a href="<?php echo site_url('home/gestioncatalogos');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/minilogo.png"></a>
 					<p class="texto">Gestión de Catálogos</p>
 				</li>
-				<!--
+				
 				<li class="contenedor" id="empleados">
 					<a href="<?php echo site_url('recordatorios/show');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/minilogo.png"></a>
 					<p class="texto">Gestión de Recordatorios</p>
 				</li>
-				-->
+				
 				<li class="contenedor" id="salir"><!--LI-->
 					<a href="<?php echo site_url('welcome/logout');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/minilogo.png"></a>
 					<p class="texto">Salir</p>
