@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 				$recordatorio = array( 
 					'email_customer' 	  => $_GET['email_customer'],
 					'name_customer' 	  => $_GET['name_customer'],
-					'date_picker' 		  => $_GET['date_picker'],
+					'date_picker' 		  => date("Y-m-d"),
 					'name_pet' 			  => $_GET['name_pet'],
 					'title_product' 	  => $_GET['title_product'],
 					'image_product' 	  => $_GET['image_product'],
@@ -185,24 +185,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 			case 'recordatorio':
 
-					$recordatorio = array( 
-						'email_customer' 	  => $_GET['email_customer'],
-						'name_customer' 	  => $_GET['name_customer'],
-						'date_picker' 		  => $_GET['date_picker'],
-						'name_pet' 			  => $_GET['name_pet'],
-						'title_product' 	  => $_GET['title_product'],
-						'image_product' 	  => $_GET['image_product'],
-						'presentation_product'=> $_GET['presentation_product'],
-						'portion' 			  => $_GET['portion'],
-						'frecuency' 		  => $_GET['frecuency'],
-						'price_list' 		  => $_GET['price_list'],
-						'price_pya' 		  => $_GET['price_pya'],
-						'donation' 			  => $_GET['donation'],
-						'save_money' 		  => $_GET['save_money'],
-						'booleano' 			  => $_GET['booleano'],
-						'id_variant' 		  => $_GET['id_variant']
-					);
-				
 					$status_recordatorio = 0;
 					$hoy = date('Y-m-d');
 					try{
