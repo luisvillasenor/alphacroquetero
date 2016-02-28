@@ -1,10 +1,15 @@
 <?php
-header("Content-type: application/vnd.ms-excel");
+header("Content-type: application/vnd.ms-excel; charset=UTF-8");
+#header("Content-type: text/csv; charset=utf-8");
 header("Content-Disposition: attachment; filename=recordatorios.xls");
 ?>
-<table class="table table-bordered">    
-	<thead>       
+<table>    
+
 		<tr>         
+			<th>id</th>
+			<th>accion</th> 
+			<th>fecha alta</th>
+			<th>fecha envio</th>  
 			<th>Usuario</th> 
 			<th>Email</th> 
 			<th>Fecha Recordatorio</th> 
@@ -18,14 +23,16 @@ header("Content-Disposition: attachment; filename=recordatorios.xls");
 			<th>Precion PyA</th>
 			<th>Donacion</th>
 			<th>Ahorro</th>
-			<th>Boolean</th>
 			<th>Id Variant</th>
 			<th>Estatus</th> 
 		</tr>   
-	</thead>    
-	<tbody> 
-	<?php foreach ($show_recordatorios as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+
+	<?php foreach ($show_recordatorios as $fila) :?> 
 		<tr>
+			<td><?php echo $fila->id; ?></td>
+			<td><?php echo $fila->action; ?></td>
+			<td><?php echo $fila->fecha_alta; ?></td>
+			<td><?php echo $fila->fecha_envio; ?></td>
 			<td><?php echo $fila->name_customer; ?></td>
 			<td><?php echo $fila->email_customer; ?></td>
 			<td><?php echo $fila->date_picker; ?></td>
@@ -34,23 +41,22 @@ header("Content-Disposition: attachment; filename=recordatorios.xls");
 			<td><?php echo $fila->image_product; ?></td>
 			<td><?php echo $fila->presentation_product; ?></td>
 			<td><?php echo $fila->portion; ?></td>
-			<td><?php echo $fila->frecuency; ?></td>
+			<td><?php echo utf8_decode($fila->frecuency); ?></td>
 			<td><?php echo $fila->price_list; ?></td>
 			<td><?php echo $fila->price_pya; ?></td>
 			<td><?php echo $fila->donation; ?></td>
 			<td><?php echo $fila->save_money; ?></td>
-			<td><?php echo $fila->boolean; ?></td>
 			<td><?php echo $fila->id_variant; ?></td>
 			<td>
 				<?php
 					if ( $fila->status_recordatorio == 0 ) { ?>
-						<span class="label label-warning">Programado</span>
+						<span>Programado</span>
 					<?php } elseif ( $fila->status_recordatorio == 1 ) { ?>
-						<span class="label label-success">Enviado</span>
+						<span>Enviado</span>
 					<?php } ?>							
 				
 			</td>
 		</tr>
 	<?php endforeach; ?>
-	</tbody> 
+
 </table> 

@@ -19,7 +19,7 @@
 			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/show');?>/0">Ver "Programados"</a>
 			        </li>
 			        <li>
-			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/exportar');?>">Exportar a "csv"</a>
+			        	<a class="btn btn-md" href="<?php echo base_url('recordatorios/exportar');?>">Exportar a "xls"</a>
 			        </li>
 			      </ul>
 			    </div>
@@ -30,44 +30,33 @@
 			<table class="table table-striped table-bordered table-hover table-condensed">    
 				<thead>       
 					<tr>         
-						<th>Usuario</th> 
-						<th>Email</th> 
+						<th>ID</th>
+						<th>Disparo</th>
+						<th>Fecha Alta</th>
 						<th>Fecha Recordatorio</th> 
+						<th>Fecha Envío</th>
+						<th>Usuario</th> 
 						<th>Nombre de Mascota</th>
-						<th>Producto</th>
-						<th>Imagen</th>
-						<th>Presentacion</th> 
+						<th>Producto</th>							
 						<th>Porcion</th>
 						<th>Frecuencia</th>
 						<th>Precio Lista</th>
 						<th>Precion PyA</th>
 						<th>Donacion</th>
-						<th>Ahorro</th>
-						<th>Boolean</th>
-						<th>Id Variant</th>
+						<th>Ahorro</th>							
 						<th>Estatus</th>
-						<th></th> 
+						
 					</tr>   
 				</thead>    
 				<tbody> 
 				<?php foreach ($show_recordatorios as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
 					<tr>
-						<td><?php echo $fila->name_customer; ?></td>
-						<td><?php echo $fila->email_customer; ?></td>
+						<td><?php echo $fila->id; ?></td>
+						<td><?php echo $fila->action; ?></td>
+						<td><?php echo $fila->fecha_alta; ?></td>
 						<td><?php echo $fila->date_picker; ?></td>
-						<td><?php echo $fila->name_pet; ?></td>
-						<td><?php echo $fila->title_product; ?></td>
-						<td><?php echo $fila->image_product; ?></td>
-						<td><?php echo $fila->presentation_product; ?></td>
-						<td><?php echo $fila->portion; ?></td>
-						<td><?php echo $fila->frecuency; ?></td>
-						<td><?php echo $fila->price_list; ?></td>
-						<td><?php echo $fila->price_pya; ?></td>
-						<td><?php echo $fila->donation; ?></td>
-						<td><?php echo $fila->save_money; ?></td>
-						<td><?php echo $fila->booleano; ?></td>
-						<td><?php echo $fila->id_variant; ?></td>
 						<td>
+							<?php echo $fila->fecha_envio; ?><br>
 							<?php
 								if ( $fila->status_recordatorio == 0 ) { ?>
 									<span class="label label-warning">Programado</span>
@@ -76,6 +65,23 @@
 								<?php } ?>							
 							
 						</td>
+						<td>
+							<?php echo $fila->name_customer; ?><br>
+							<?php echo $fila->email_customer; ?>
+						</td>
+						
+						<td><?php echo $fila->name_pet; ?></td>
+						<td>
+							<img style="width:60px;" src="<?php echo $fila->image_product; ?>"> <br>
+							<?php echo $fila->title_product; ?> (<?php echo $fila->presentation_product; ?>)<br>
+							
+						</td>							
+						<td><?php echo $fila->portion; ?></td>
+						<td><?php echo utf8_decode($fila->frecuency); ?></td>
+						<td><?php echo $fila->price_list; ?></td>
+						<td><?php echo $fila->price_pya; ?></td>
+						<td><?php echo $fila->donation; ?></td>
+						<td><?php echo $fila->save_money; ?></td>
 						<td>
 							<a href="" data-toggle="modal" data-target="#miDeleteRecordatorio<?php echo $fila->id; ?>">Eliminar</a>
 

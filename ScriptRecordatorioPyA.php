@@ -36,21 +36,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			case 'registrar':
 
 					$recordatorio = array( 
-						'email_customer' 	  => $_GET['email_customer'],
+						'action' 	  		  => $_GET['accion'],
+						'email_customer' 	  => html_entity_decode($_GET['email_customer']),
 						'name_customer' 	  => $_GET['name_customer'],
 						'date_picker' 		  => $_GET['date_picker'],
 						'name_pet' 			  => $_GET['name_pet'],
 						'title_product' 	  => $_GET['title_product'],
-						'image_product' 	  => $_GET['image_product'],
-						'presentation_product'=> $_GET['presentation_product'],
-						'portion' 			  => $_GET['portion'],
-						'frecuency' 		  => $_GET['frecuency'],
-						'price_list' 		  => $_GET['price_list'],
-						'price_pya' 		  => $_GET['price_pya'],
-						'donation' 			  => $_GET['donation'],
-						'save_money' 		  => $_GET['save_money'],
-						'booleano' 			  => $_GET['booleano'],
-						'id_variant' 		  => $_GET['id_variant']
+						'image_product' 	  => "https:".html_entity_decode($_GET['image_product']),
+						'presentation_product'=> html_entity_decode($_GET['presentation_product']),
+						'portion' 			  => html_entity_decode($_GET['portion']),
+						'frecuency' 		  => html_entity_decode($_GET['frecuency']),
+						'price_list' 		  => html_entity_decode($_GET['price_list']),
+						'price_pya' 		  => html_entity_decode($_GET['price_pya']),
+						'donation' 			  => html_entity_decode($_GET['donation']),
+						'save_money' 		  => html_entity_decode($_GET['save_money']),
+						'booleano' 			  => html_entity_decode($_GET['booleano']),
+						'id_variant' 		  => html_entity_decode($_GET['id_variant'])
 					);
 			
 					if ( isset($recordatorio['email_customer']) && $recordatorio['email_customer'] != null ) {
@@ -61,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 										$dbh = new PDO("mysql:host=".$host.";dbname=".$db,$user,$pass);
 										$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-										$sth = $dbh->prepare('INSERT INTO recordatorios (email_customer, name_customer, date_picker, name_pet, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:email_customer, :name_customer, :date_picker, :name_pet, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
+										$sth = $dbh->prepare('INSERT INTO recordatorios (action, email_customer, name_customer, date_picker, name_pet, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:action, :email_customer, :name_customer, :date_picker, :name_pet, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
 
+										$sth->bindParam(':action', $recordatorio['action']);
 										$sth->bindParam(':email_customer', $recordatorio['email_customer']);
 										$sth->bindParam(':name_customer', $recordatorio['name_customer']);
 										$sth->bindParam(':date_picker', $recordatorio['date_picker']);
@@ -80,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 										$sth->bindParam(':id_variant', $recordatorio['id_variant']);
 										
 										$sth->execute();
-										return print 'handlePress([{"respuesta": 1}]);' ;
+										return print 'handlePress([{"respuesta": 1},{"accion": "registrar"}]);' ;
 								}
 								catch(PDOException $e) {
 									echo "Error: " . $e->getMessage();
@@ -103,21 +105,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			case 'enviarahora':
 				
 				$recordatorio = array( 
-					'email_customer' 	  => $_GET['email_customer'],
+					'action' 	  		  => $_GET['accion'],
+					'email_customer' 	  => html_entity_decode($_GET['email_customer']),
 					'name_customer' 	  => $_GET['name_customer'],
 					'date_picker' 		  => date("Y-m-d"),
 					'name_pet' 			  => $_GET['name_pet'],
 					'title_product' 	  => $_GET['title_product'],
-					'image_product' 	  => $_GET['image_product'],
-					'presentation_product'=> $_GET['presentation_product'],
-					'portion' 			  => $_GET['portion'],
-					'frecuency' 		  => $_GET['frecuency'],
-					'price_list' 		  => $_GET['price_list'],
-					'price_pya' 		  => $_GET['price_pya'],
-					'donation' 			  => $_GET['donation'],
-					'save_money' 		  => $_GET['save_money'],
-					'booleano' 			  => $_GET['booleano'],
-					'id_variant' 		  => $_GET['id_variant']
+					'image_product' 	  => "https:".html_entity_decode($_GET['image_product']),
+					'presentation_product'=> html_entity_decode($_GET['presentation_product']),
+					'portion' 			  => html_entity_decode($_GET['portion']),
+					'frecuency' 		  => html_entity_decode($_GET['frecuency']),
+					'price_list' 		  => html_entity_decode($_GET['price_list']),
+					'price_pya' 		  => html_entity_decode($_GET['price_pya']),
+					'donation' 			  => html_entity_decode($_GET['donation']),
+					'save_money' 		  => html_entity_decode($_GET['save_money']),
+					'booleano' 			  => html_entity_decode($_GET['booleano']),
+					'id_variant' 		  => html_entity_decode($_GET['id_variant'])
 				);
 
 	
@@ -131,8 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 								$dbh = new PDO("mysql:host=".$host.";dbname=".$db,$user,$pass);
 								$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 								################
-								$sth = $dbh->prepare('INSERT INTO recordatorios (email_customer, name_customer, date_picker, name_pet, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:email_customer, :name_customer, :date_picker, :name_pet, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
+								$sth = $dbh->prepare('INSERT INTO recordatorios (action, email_customer, name_customer, date_picker, name_pet, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:action, :email_customer, :name_customer, :date_picker, :name_pet, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
 
+								$sth->bindParam(':action', $recordatorio['action']);
 								$sth->bindParam(':email_customer', $recordatorio['email_customer']);
 								$sth->bindParam(':name_customer', $recordatorio['name_customer']);
 								$sth->bindParam(':date_picker', $recordatorio['date_picker']);
@@ -153,14 +157,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 								$id = $dbh->lastInsertId();
 								################
 								$destinatario = $recordatorio['email_customer'];
-							    $asunto = "Recordatorio";
-							    $mensaje = "Ya es tiempo de comprar mas";
-							    mail($destinatario,$asunto,$mensaje);
+							    $asunto = "Recordatorio Programa y Ahorra";
+							    $message = "
+									<html>
+									<head>
+									<title>Recordatorio Programa y Ahorra</title>
+									</head>
+									<body>
+									<p>Ya es tiempo de comprar más!</p>
+									</body>
+									</html>
+									";
+
+									// Always set content-type when sending HTML email
+									$headers = "MIME-Version: 1.0" . "\r\n";
+									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+									// More headers
+									$headers .= 'From: <contacto@croquetero.com>' . "\r\n";
+							    mail($destinatario,$asunto,$message,$headers);
 							    ################
 							    $sth = $dbh->prepare('UPDATE recordatorios SET status_recordatorio=1, fecha_envio=date("Y-m-d H:i:s") WHERE id=?');
 								$sth->execute(array($id));
 								################
-								return print 'handlePress([{"respuesta": 1}]);' ;
+								return print 'handlePress([{"respuesta": 1},{"accion": "enviarahora"}]);' ;
 						}
 						catch(PDOException $e) {
 							echo "Error: " . $e->getMessage();
@@ -198,9 +217,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 								foreach ($data_recordatorios as $recordatorio) {
 									$id = $recordatorio['id'];
 									$destinatario = $recordatorio['email_customer'];
-								    $asunto = "Recordatorio";
-								    $mensaje = "Ya es tiempo de comprar mas";
-								    mail($destinatario,$asunto,$mensaje);
+								    $asunto = "Recordatorio Programa y Ahorra";
+								    $message = "
+									<html>
+									<head>
+									<title>Recordatorio Programa y Ahorra</title>
+									</head>
+									<body>
+									<p>Ya es tiempo de comprar más!</p>
+									</body>
+									</html>
+									";
+
+									// Always set content-type when sending HTML email
+									$headers = "MIME-Version: 1.0" . "\r\n";
+									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+									// More headers
+									$headers .= 'From: <contacto@croquetero.com>' . "\r\n";
+							    	mail($destinatario,$asunto,$message,$headers);
 								    
 								    $sth = $dbh->prepare('UPDATE recordatorios SET status_recordatorio=1, fecha_envio=date("Y-m-d H:i:s") WHERE id=?');
 									$sth->execute(array($id));

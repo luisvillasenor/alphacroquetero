@@ -91,11 +91,11 @@ class Recordatorios extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->model('tbl_recordatorios_crud_model');
 			$data['show_recordatorios'] = $this->tbl_recordatorios_crud_model->show($status_recordatorio);
-			$this->load->view('header_view');
+			#$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			#$this->load->view('menu_view');
 			$this->load->view('exportar_recordatorios_view',$data);
-			$this->load->view('footer_view');
+			#$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
@@ -109,10 +109,10 @@ class Recordatorios extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		$this->load->model('tbl_recordatorios_crud_model');
 				$data['show_recordatorios'] = $this->tbl_recordatorios_crud_model->show($status_recordatorio);
-				$this->load->view('header_view');
+				#$this->load->view('header_view');
 				#$this->load->view('menu_view');
 				$this->load->view('exportar_recordatorios_view',$data);
-				$this->load->view('footer_view');
+				#$this->load->view('footer_view');
 			}else{
 
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
