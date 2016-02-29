@@ -20,10 +20,15 @@
 					<p class="texto">Seguridad</p>
 				</li>
 
+				<li class="contenedor" id="empleados">
+					<a href="<?php echo site_url('recordatorios/show');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/minilogo.png"></a>
+					<p class="texto">Gestión de Recordatorios</p>
+				</li>
+
 				<?php if (ROL == SUPERROL) { ?>
 						<li class="contenedor" id="empleados">
-							<a href="<?php echo site_url('recordatorios/show');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/minilogo.png"></a>
-							<p class="texto">Gestión de Recordatorios</p>
+							<a href="<?php echo site_url('recordatorios/estadisticas');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/minilogo.png"></a>
+							<p class="texto">Estadisticas Recordatorios</p>
 						</li>
 				<?php } ?>
 

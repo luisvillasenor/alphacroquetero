@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading text-center"><h1>LISTA DE RECORDATORIOS [PRUEBAS]</h1></div>
+  <div class="panel-heading text-center"><h1>LISTA DE RECORDATORIOS</h1></div>
   <div class="panel-body">
   		<div class="caption">
 	      	<nav class="navbar navbar-default">
@@ -31,7 +31,7 @@
 				<thead>       
 					<tr>         
 						<th>ID</th>
-						<th>Disparo</th>
+						<th>Accion</th>
 						<th>Fecha Alta</th>
 						<th>Fecha Recordatorio</th> 
 						<th>Fecha Envío</th>
