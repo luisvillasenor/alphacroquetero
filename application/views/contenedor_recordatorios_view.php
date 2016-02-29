@@ -73,15 +73,15 @@
 						<td><?php echo $fila->name_pet; ?></td>
 						<td>
 							<img style="width:60px;" src="<?php echo $fila->image_product; ?>"> <br>
-							<?php echo $fila->title_product; ?> (<?php echo $fila->presentation_product; ?>)<br>
+							<?php echo $fila->title_product; ?> (<?php echo $fila->presentation_product; ?> Kg)<br>
 							
 						</td>							
-						<td><?php echo $fila->portion; ?></td>
-						<td><?php echo utf8_decode($fila->frecuency); ?></td>
-						<td><?php echo $fila->price_list; ?></td>
-						<td><?php echo $fila->price_pya; ?></td>
-						<td><?php echo $fila->donation; ?></td>
-						<td><?php echo $fila->save_money; ?></td>
+						<td><?php echo $fila->portion; ?> g.</td>
+						<td><?php echo utf8_decode($fila->frecuency); ?> días</td>
+						<td>$ <?php echo $fila->price_list; ?> MXN</td>
+						<td>$ <?php echo $fila->price_pya; ?> MXN</td>
+						<td><?php echo $fila->donation; ?> comidas</td>
+						<td>$ <?php echo $fila->save_money; ?> MXN</td>
 						<td>
 							<a href="" data-toggle="modal" data-target="#miDeleteRecordatorio<?php echo $fila->id; ?>">Eliminar</a>
 
