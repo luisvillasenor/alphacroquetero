@@ -3,7 +3,11 @@ header("Acces-Control-Allow-Origin: http://www.croquetero.com");
 header ("Content-Type: application/json; charset=UTF-8");
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
+	$recordatorio = array();
+
 	$action 			  = null;
+	$origen 			  = null;
+	$sku 			  	  = null;
 	$fecha_alta		 	  = null;
 	$fecha_envio	 	  = null;
 	$email_customer 	  = null;
@@ -22,37 +26,37 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	$boolean 			  = null;
 	$id_variant 		  = null;
 	$status_recordatorio  = null;
+	$mensaje 			  = null;
 
-	$action = $_GET['accion'];
+	$recordatorio = array( 
+		'action' 	  		  => (isset($_GET['accion'])) ? $action = $_GET['accion'] : $action,
+		'origen' 	  		  => (isset($_GET['origen'])) ? $origen = $_GET['origen'] : $origen,
+		'sku' 	  		  	  => (isset($_GET['sku'])) ? $sku = $_GET['sku'] : $sku,
+		'email_customer' 	  => html_entity_decode($_GET['email_customer']),
+		'name_customer' 	  => (isset($_GET['name_customer'])) ? $name_customer = $_GET['name_customer'] : $name_customer,
+		'date_picker' 		  => (isset($_GET['date_picker'])) ? $date_picker = $_GET['date_picker'] : $date_picker,
+		'name_pet' 			  => (isset($_GET['name_pet'])) ? $name_pet = $_GET['name_pet'] : $name_pet,
+		'title_product' 	  => (isset($_GET['title_product'])) ? $title_product = $_GET['title_product'] : $title_product,
+		'image_product' 	  => "https:".html_entity_decode($_GET['image_product']),
+		'presentation_product'=> html_entity_decode($_GET['presentation_product']),
+		'portion' 			  => html_entity_decode($_GET['portion']),
+		'frecuency' 		  => html_entity_decode($_GET['frecuency']),
+		'price_list' 		  => html_entity_decode($_GET['price_list']),
+		'price_pya' 		  => html_entity_decode($_GET['price_pya']),
+		'donation' 			  => html_entity_decode($_GET['donation']),
+		'save_money' 		  => html_entity_decode($_GET['save_money']),
+		'booleano' 			  => html_entity_decode($_GET['booleano']),
+		'id_variant' 		  => html_entity_decode($_GET['id_variant'])
+	);
+
 
 	if ( isset($action) ) {
 
 		$host = "localhost"; $user = "fundcroq_master";	$pass = "wiC%Phou^"; $db = "fundcroq_catalogos";	
-		#$host = "localhost"; $user = "root";	$pass = "lgva6773"; $db = "fundcroq_catalogos";
-		#$host = "internal-db.s202570.gridserver.com"; $user = "db202570";	$pass = "3bbcQt2WtV?"; $db = "db202570_devcroquetero";
 
 		switch ($action) {
 
 			case 'registrar':
-
-					$recordatorio = array( 
-						'action' 	  		  => $_GET['accion'],
-						'email_customer' 	  => html_entity_decode($_GET['email_customer']),
-						'name_customer' 	  => $_GET['name_customer'],
-						'date_picker' 		  => $_GET['date_picker'],
-						'name_pet' 			  => $_GET['name_pet'],
-						'title_product' 	  => $_GET['title_product'],
-						'image_product' 	  => "https:".html_entity_decode($_GET['image_product']),
-						'presentation_product'=> html_entity_decode($_GET['presentation_product']),
-						'portion' 			  => html_entity_decode($_GET['portion']),
-						'frecuency' 		  => html_entity_decode($_GET['frecuency']),
-						'price_list' 		  => html_entity_decode($_GET['price_list']),
-						'price_pya' 		  => html_entity_decode($_GET['price_pya']),
-						'donation' 			  => html_entity_decode($_GET['donation']),
-						'save_money' 		  => html_entity_decode($_GET['save_money']),
-						'booleano' 			  => html_entity_decode($_GET['booleano']),
-						'id_variant' 		  => html_entity_decode($_GET['id_variant'])
-					);
 			
 					if ( isset($recordatorio['email_customer']) && $recordatorio['email_customer'] != null ) {
 						
@@ -62,13 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 										$dbh = new PDO("mysql:host=".$host.";dbname=".$db,$user,$pass);
 										$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-										$sth = $dbh->prepare('INSERT INTO recordatorios (action, email_customer, name_customer, date_picker, name_pet, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:action, :email_customer, :name_customer, :date_picker, :name_pet, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
+										$sth = $dbh->prepare('INSERT INTO recordatorios (action, origen, email_customer, name_customer, date_picker, name_pet, sku, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:action, :origen, :email_customer, :name_customer, :date_picker, :name_pet, :sku, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
 
 										$sth->bindParam(':action', $recordatorio['action']);
+										$sth->bindParam(':origen', $recordatorio['origen']);
 										$sth->bindParam(':email_customer', $recordatorio['email_customer']);
 										$sth->bindParam(':name_customer', $recordatorio['name_customer']);
 										$sth->bindParam(':date_picker', $recordatorio['date_picker']);
 										$sth->bindParam(':name_pet', $recordatorio['name_pet']);
+										$sth->bindParam(':sku', $recordatorio['sku']);
 										$sth->bindParam(':title_product', $recordatorio['title_product']);
 										$sth->bindParam(':image_product', $recordatorio['image_product']);
 										$sth->bindParam(':presentation_product', $recordatorio['presentation_product']);
@@ -82,49 +88,30 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 										$sth->bindParam(':id_variant', $recordatorio['id_variant']);
 										
 										$sth->execute();
-										return print 'handlePress([{"respuesta": 1},{"accion": "registrar"}]);' ;
+										$mensaje = 'handlePress([{"respuesta": 1,"accion": "registrar"}]);' ;
+										return print $mensaje;
 								}
 								catch(PDOException $e) {
 									echo "Error: " . $e->getMessage();
 								}
 								
 								$dbh = null;
-								return print 'handlePress([{"respuesta": 0}]);' ;
+								$mensaje =  'handlePress([{"respuesta": 0,"accion": "registrar"}]);' ;
+								return print $mensaje;
 
 						}
 						$dbh = null;
-						return print 'handlePress([{"respuesta": 0}]);' ;
+						$mensaje =  'handlePress([{"respuesta": 0,"accion": "registrar"}]);' ;
+						return print $mensaje;
 
 					}
 					$dbh = null;
-					return print 'handlePress([{"respuesta": 0}]);' ;
-
+					$mensaje =  'handlePress([{"respuesta": 0,"accion": "registrar"}]);' ;
+					return print $mensaje;
 
 				break;
 
 			case 'enviarahora':
-				
-				$recordatorio = array( 
-					'action' 	  		  => $_GET['accion'],
-					'email_customer' 	  => html_entity_decode($_GET['email_customer']),
-					'name_customer' 	  => $_GET['name_customer'],
-					'date_picker' 		  => date("Y-m-d"),
-					'name_pet' 			  => $_GET['name_pet'],
-					'title_product' 	  => $_GET['title_product'],
-					'image_product' 	  => "https:".html_entity_decode($_GET['image_product']),
-					'presentation_product'=> html_entity_decode($_GET['presentation_product']),
-					'portion' 			  => html_entity_decode($_GET['portion']),
-					'frecuency' 		  => html_entity_decode($_GET['frecuency']),
-					'price_list' 		  => html_entity_decode($_GET['price_list']),
-					'price_pya' 		  => html_entity_decode($_GET['price_pya']),
-					'donation' 			  => html_entity_decode($_GET['donation']),
-					'save_money' 		  => html_entity_decode($_GET['save_money']),
-					'booleano' 			  => html_entity_decode($_GET['booleano']),
-					'id_variant' 		  => html_entity_decode($_GET['id_variant'])
-				);
-
-	
-				#$date_picker = date("Y-m-d");
 						
 				if ( isset($recordatorio['email_customer']) && $recordatorio['email_customer'] != null ) {
 						
@@ -134,13 +121,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 								$dbh = new PDO("mysql:host=".$host.";dbname=".$db,$user,$pass);
 								$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 								################
-								$sth = $dbh->prepare('INSERT INTO recordatorios (action, email_customer, name_customer, date_picker, name_pet, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:action, :email_customer, :name_customer, :date_picker, :name_pet, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
+								$sth = $dbh->prepare('INSERT INTO recordatorios (action, origen, email_customer, name_customer, date_picker, name_pet, sku, title_product, image_product, presentation_product, portion, frecuency, price_list, price_pya, donation, save_money, booleano, id_variant) VALUES (:action, :origen, :email_customer, :name_customer, :date_picker, :name_pet, :sku, :title_product, :image_product, :presentation_product, :portion, :frecuency, :price_list, :price_pya, :donation, :save_money, :booleano, :id_variant)');
 
 								$sth->bindParam(':action', $recordatorio['action']);
+								$sth->bindParam(':origen', $recordatorio['origen']);
 								$sth->bindParam(':email_customer', $recordatorio['email_customer']);
 								$sth->bindParam(':name_customer', $recordatorio['name_customer']);
 								$sth->bindParam(':date_picker', $recordatorio['date_picker']);
 								$sth->bindParam(':name_pet', $recordatorio['name_pet']);
+								$sth->bindParam(':sku', $recordatorio['sku']);
 								$sth->bindParam(':title_product', $recordatorio['title_product']);
 								$sth->bindParam(':image_product', $recordatorio['image_product']);
 								$sth->bindParam(':presentation_product', $recordatorio['presentation_product']);
@@ -218,7 +207,7 @@ background: #f38809;
 
 		<i style='font-size: 12px; padding-top: 30px; display: block;'>* Es la duraci&oacute;n estimada de tu bulto de alimento acorde con la raci&oacute;n diaria recomendada por la marca, seg&uacute;n las caracter&iacute;sticas de tu mascota. Si el consumo de alimento de tu mascota es distinto, no te preocupes. Ll&aacute;manos y relizaremos este cambio.</i>
 
-		<i style='font-size: 12px; padding-top: 30px; display: block;'>** Al programar y prepagar tus pedidos obtienes el descuento Programa y Ahorra de Croquetero. &iquest;Tienes duda de c&oacute;mo prepagar tus siguientes pedidos? <a href='#' style='color: inherit;'>Da click aqu&iacute;</a></i>
+		<i style='font-size: 12px; padding-top: 30px; display: block;'>** Consulta los precios vigentes cuando realices tu pedido. Al programar y prepagar tus pedidos obtienes el descuento Programa y Ahorra de Croquetero. &iquest;Tienes duda de c&oacute;mo prepagar tus siguientes pedidos? <a href='#' style='color: inherit;'>Da click aqu&iacute;</a></i>
 
 		<i style='font-size: 12px; padding-top: 30px; display: block;'>*** Con este programa tu mascota alimenta a otra mascota de Croquetero, con tus compras de alimento ayudas a nutrir a perros y gatos en adopci&oacute;n. Conoce m&aacute;s sobre el <a href='#' style='color: inherit;'>'Movimiento Croquetero'</a></i>
 
@@ -284,34 +273,37 @@ background: #f38809;
 									$headers = "MIME-Version: 1.0" . "\r\n";
 									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 									// More headers
-									$headers .= 'From: <contacto@croquetero.com>' . "\r\n";
+									$headers .= "From: Croquetero <contacto@croquetero.com>" . "\r\n";
 							    mail($destinatario,$asunto,$message,$headers);
 							    ################
 							    $sth = $dbh->prepare('UPDATE recordatorios SET status_recordatorio=1, fecha_envio=date("Y-m-d H:i:s") WHERE id=?');
 								$sth->execute(array($id));
 								################
-								return print 'handlePress([{"respuesta": 1},{"accion": "enviarahora"}]);' ;
+								$mensaje = 'handlePress([{"respuesta": 1,"accion": "enviarahora"}])' ;
+								return print $mensaje;
 						}
 						catch(PDOException $e) {
 							echo "Error: " . $e->getMessage();
 							$dbh = null;
-							return print 'handlePress([{"respuesta": 0}]);' ;
+							$mensaje =  'handlePress([{"respuesta": 0,"accion": "enviarahora"}]);' ;
+							return print $mensaje;
 						}
 						
 						$dbh = null;
-						return print 'handlePress([{"respuesta": 0}]);' ;
+						$mensaje =  'handlePress([{"respuesta": 0,"accion": "enviarahora"}]);' ;
+						return print $mensaje;
 
 					}
 					$dbh = null;
-					return print 'handlePress([{"respuesta": 0}]);' ;
+					$mensaje =  'handlePress([{"respuesta": 0,"accion": "enviarahora"}]);' ;
+					return print $mensaje;
 
 				}
 				$dbh = null;
-				return print 'handlePress([{"respuesta": 0}]);' ;
-
+				$mensaje =  'handlePress([{"respuesta": 0,"accion": "enviarahora"}]);' ;
+				return print $mensaje;
 
 				break;
-
 
 			case 'recordatorio':
 
@@ -455,19 +447,21 @@ background: #f38809;
 									$headers = "MIME-Version: 1.0" . "\r\n";
 									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 									// More headers
-									$headers .= 'From: <contacto@croquetero.com>' . "\r\n";
+									$headers .= 'From: Croquetero <contacto@croquetero.com>' . "\r\n";
 							    	mail($destinatario,$asunto,$message,$headers);
 								    
 								    $sth = $dbh->prepare('UPDATE recordatorios SET status_recordatorio=1, fecha_envio=date("Y-m-d H:i:s") WHERE id=?');
 									$sth->execute(array($id));
 									#echo "ID: ".$id." -- Destinatario: ".$destinatario." Fecha enviado: ".$fecha_envio."\n";
 								}
-								return print 'handlePress([{"respuesta": 1}]);' ;
+								$mensaje = 'handlePress([{"respuesta": 1,"accion": "recordatorio"}]);' ;
+								return print $mensaje;
 								#echo "Recordatorios Enviados";
 								exit();
 							}
 							#echo "No hay Recordatorios para hoy";
-							return print 'handlePress([{"respuesta": 0}]);' ;
+							$mensaje = 'handlePress([{"respuesta": 0,"accion": "recordatorio"}]);' ;
+							return print $mensaje;
 							exit();
 							#return true;
 					}
@@ -476,18 +470,23 @@ background: #f38809;
 					}
 				break;
 			default:
-				#echo "No es Accion";
-				return print 'handlePress([{"respuesta": 0}]);' ;
+				#echo "La Accion a evaluar no existe";
+				$mensaje = 'handlePress([{"respuesta": 0,"accion": "accion no valida"}]);' ;
+				return print $mensaje;
 				break;
 		}
+		#echo "No exite Accion a evaluar";
 		$dbh = null;
-		return print 'handlePress([{"respuesta": 0}]);' ;
+		$mensaje = 'handlePress([{"respuesta": 0,"accion": "accion no valida"}]);' ;
+		return print $mensaje;
 		exit();	
 	}
-	return print 'handlePress([{"respuesta": 0}]);' ;
+	$mensaje = 'handlePress([{"respuesta": 0,"accion": "action no valid"}]);' ;
+	return print $mensaje;
 	die();
 
 }
 #echo "No es GET";
-return print 'handlePress([{"respuesta": 0}]);' ;
+$mensaje = 'handlePress([{"respuesta": 0,"accion": "GET ERROR"}]);' ; 
+return print $mensaje;
 die();
