@@ -1,19 +1,19 @@
 <?php
 header("Content-type: application/vnd.ms-excel; charset=UTF-8");
-#header("Content-type: text/csv; charset=utf-8");
 header("Content-Disposition: attachment; filename=recordatorios.xls");
 ?>
 <table>    
-
 		<tr>         
 			<th>id</th>
 			<th>accion</th> 
 			<th>fecha alta</th>
 			<th>fecha envio</th>  
+			<th>origen</th> 
 			<th>Usuario</th> 
 			<th>Email</th> 
 			<th>Fecha Recordatorio</th> 
 			<th>Nombre de Mascota</th>
+			<th>Sku</th>
 			<th>Producto</th>
 			<th>Imagen</th>
 			<th>Presentacion</th> 
@@ -33,10 +33,12 @@ header("Content-Disposition: attachment; filename=recordatorios.xls");
 			<td><?php echo $fila->action; ?></td>
 			<td><?php echo $fila->fecha_alta; ?></td>
 			<td><?php echo $fila->fecha_envio; ?></td>
+			<td><?php echo $fila->origen; ?></td>
 			<td><?php echo $fila->name_customer; ?></td>
 			<td><?php echo $fila->email_customer; ?></td>
 			<td><?php echo $fila->date_picker; ?></td>
 			<td><?php echo $fila->name_pet; ?></td>
+			<td><?php echo $fila->sku; ?></td>
 			<td><?php echo $fila->title_product; ?></td>
 			<td><?php echo $fila->image_product; ?></td>
 			<td><?php echo $fila->presentation_product; ?></td>

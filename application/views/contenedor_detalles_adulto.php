@@ -36,10 +36,10 @@
           <?php foreach ($cargar_detalles as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
             <tr>
               <td> <?php echo $fila->sku; ?></td>
-              <td> <?php  echo $fila->producto; ?></td>
-              <td> <?php  echo $fila->presentacion; ?></td>
-              <td> <?php  echo number_format($fila->peso); ?></td>
-              <td> <?php  echo $fila->porcion; ?></td>
+              <td> <?php echo $fila->producto; ?></td>
+              <td> <?php echo $fila->presentacion; ?></td>
+              <td> <?php echo $fila->peso; ?></td>
+              <td> <?php echo $fila->porcion; ?></td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary">Acciones</button>

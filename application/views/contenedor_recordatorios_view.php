@@ -35,15 +35,14 @@
 						<th>Fecha Alta</th>
 						<th>Fecha Recordatorio</th> 
 						<th>Fecha Envío</th>
+						<th>Origen</th> 
 						<th>Usuario</th> 
 						<th>Nombre de Mascota</th>
+						<th>Sku</th>
 						<th>Producto</th>							
 						<th>Porcion</th>
 						<th>Frecuencia</th>
-						<th>Precio Lista</th>
-						<th>Precion PyA</th>
 						<th>Donacion</th>
-						<th>Ahorro</th>							
 						<th>Estatus</th>
 						
 					</tr>   
@@ -65,12 +64,14 @@
 								<?php } ?>							
 							
 						</td>
+						<td><?php echo $fila->origen; ?></td>
 						<td>
 							<?php echo $fila->name_customer; ?><br>
 							<?php echo $fila->email_customer; ?>
 						</td>
 						
 						<td><?php echo $fila->name_pet; ?></td>
+						<td><?php echo $fila->sku; ?></td>
 						<td>
 							<img style="width:60px;" src="<?php echo $fila->image_product; ?>"> <br>
 							<?php echo $fila->title_product; ?> (<?php echo $fila->presentation_product; ?> Kg)<br>
@@ -78,12 +79,9 @@
 						</td>							
 						<td><?php echo $fila->portion; ?> g.</td>
 						<td><?php echo utf8_decode($fila->frecuency); ?> días</td>
-						<td>$ <?php echo $fila->price_list; ?> MXN</td>
-						<td>$ <?php echo $fila->price_pya; ?> MXN</td>
 						<td><?php echo $fila->donation; ?> comidas</td>
-						<td>$ <?php echo $fila->save_money; ?> MXN</td>
 						<td>
-							<a href="" data-toggle="modal" data-target="#miDeleteRecordatorio<?php echo $fila->id; ?>">Eliminar</a>
+							<a href="" class="btn btn-danger btn-sm" role="button" data-toggle="modal" data-target="#miDeleteRecordatorio<?php echo $fila->id; ?>">Eliminar</a>
 
 										<!-- Modal -->
 					                    <div id="miDeleteRecordatorio<?php echo $fila->id; ?>" class="modal fade" role="dialog">
